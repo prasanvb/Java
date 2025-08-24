@@ -1,4 +1,4 @@
-public class HelloWorld {
+public class L1_HelloWorld {
     // shorthand "psvm" to create main method
     public static void main(String[] args) {
         // shorthand "sout" to create print statement
