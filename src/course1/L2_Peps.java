@@ -1,5 +1,6 @@
-public class L2_Peps {
+package course1;
 
+public class L2_Peps {
     public static void main(String[] args) {
         // Using default constructor + field assignments
         Person alex = new Person();
@@ -43,7 +44,7 @@ class Person {
 
     void sleep() {
         String msg = String.format(
-                "My name is %s, I am %d years old, I live in %s, Gender: %s, Is child: %b",
+                "My name is %s, I am %d years old, I live in %s, course1.Gender: %s, Is child: %b",
                 name, age, city, gender, child
         );
 

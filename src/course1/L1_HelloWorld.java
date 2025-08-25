@@ -1,3 +1,5 @@
+package course1;
+
 public class L1_HelloWorld {
     // shorthand "psvm" to create main method
     public static void main(String[] args) {
