@@ -4,7 +4,7 @@
 - The public class of your source file must have the main method. Only one main method is needed per application.
 - Class name starts with an uppercase letter - is convention not a rule.
 
-### Constructors
+## Constructors
 A constructor in Java is a special method that:
 - Has the exact same name as the class
 - Does not have any return type (not even void)
@@ -54,3 +54,94 @@ examples:
 | **protected** | ✅         | ✅            | ✅                      | ❌            |
 | **default**   | ✅         | ✅            | ❌                      | ❌            |
 | **private**   | ✅         | ❌            | ❌                      | ❌            |
+
+## Java Variables
+
+example: `src/course1/L3_Variables.java`
+
+### Two Categories of Variables
+- **Primitive variables** → store simple values (boolean, char, byte, short, int, long, float, double)
+- **Reference variables** → store the reference (address) to an object, not the object itself
+
+### Primitive Sizes and Ranges
+
+| Type | Size | Range |
+|------|------|-------|
+| `byte` | 8 bits | -128 to 127 |
+| `short` | 16 bits | -32,768 to 32,767 |
+| `int` | 32 bits | -2³¹ to (2³¹ - 1) |
+| `long` | 64 bits | -2⁶³ to (2⁶³ - 1) |
+| `float` | 32 bits | decimal values (approx. 7 digits precision) |
+| `double` | 64 bits | decimal values (approx. 15 digits precision) |
+| `char` | 16 bits | single character / Unicode value |
+| `boolean` | - | true or false |
+
+### Variable Types by Scope
+
+**Instance variable:**
+- Declared in class but outside methods
+- Belong to objects, get default values
+
+**Local variable:**
+- Declared inside methods
+- Must be initialized before use
+
+**Reference variable:**
+- Type must match the object type (e.g., `Person p = new Person();`)
+- Superclass references can point to subclass objects (e.g., `Animal a = new Cat();`)
+
+### Naming Rules
+
+- Case-sensitive
+- Must start with a letter or `_` or `$`
+- Cannot use Java keywords
+- Use camelCase convention
+
+## Default Values for Variables
+- **Local variables** → must be explicitly initialized, otherwise compilation error
+- **Instance variables** → automatically get default values depending on type
+
+### Default Values
+| Type | Default Value |
+|------|---------------|
+| `byte`/`short`/`int`/`long` | `0` |
+| `float`/`double` | `0.0` |
+| `boolean` | `false` |
+| `char` | `\u0000` |
+| Reference types | `null` |
+
+## Variable Assignment (Literals)
+
+### Boolean Literals
+- `true` or `false` (no numbers `1` or `0` like C or javascript)
+
+### Char Literals
+- Single character inside `' '`
+- Can also use Unicode escape (e.g., `'\u0061'` → `a`)
+
+### String Literals
+- Object type, enclosed in `" "`
+
+### Integer Literals
+- **Decimal** (base 10)
+- **Octal** (base 8, prefix `0`)
+- **Hexadecimal** (base 16, prefix `0x`)
+
+### Long Literals
+- Add `L` or `l` at end
+
+### Float Literals
+- Add `F` or `f` at end
+
+### Double Literals
+- Add `D` or `d` (optional)
+
+## Type Casting
+
+- Implicit casting (widening conversion): Smaller type automatically converted to larger type.
+    - Example: `int → long`
+
+- Explicit casting (narrowing conversion): Must be done manually using (type).
+  - Example: `float → int (fractions lost)`
+
+- Special case with byte: Compile-time constant expressions can fit without error, but runtime expressions require explicit casting.
