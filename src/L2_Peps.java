@@ -1,7 +1,7 @@
 public class L2_Peps {
 
     public static void main(String[] args) {
-        // <ClassType> objectName = new <ClassName>
+        // Using default constructor + field assignments
         Person alex = new Person();
         alex.name = "Alex";
         alex.age = 8;
@@ -10,12 +10,8 @@ public class L2_Peps {
         alex.city = "Vancouver";
         alex.sleep();
 
-        Person mia = new Person();
-        mia.name = "Mia";
-        mia.age = 72;
-        mia.child = false;
-        mia.city = "Toronto";
-        mia.gender = Gender.FEMALE;
+        // Using parameterized constructor
+        Person mia = new Person("Mia", 62, Gender.FEMALE, false, "Toronto");
         mia.sleep();
     }
 }
@@ -32,8 +28,20 @@ class Person {
     boolean child;
     String city;
 
+    // Constructor overloading
+    // ✅ No-arg constructor (needed for Alex style)
+    public Person() {}
+
+    // ✅ Parameterized constructor (needed for Mia style)
+    public Person(String name, int age, Gender gender, boolean child, String city) {
+        this.name = name;
+        this.age = age;
+        this.gender = gender;
+        this.child = child;
+        this.city = city;
+    }
+
     void sleep() {
-        // String interpolation in Java
         String msg = String.format(
                 "My name is %s, I am %d years old, I live in %s, Gender: %s, Is child: %b",
                 name, age, city, gender, child
