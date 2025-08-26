@@ -145,3 +145,57 @@ example: `src/course1/L3_Variables.java`
   - Example: `float → int (fractions lost)`
 
 - Special case with byte: Compile-time constant expressions can fit without error, but runtime expressions require explicit casting.
+
+## Scope of Variables
+
+In Java, the **scope** of a variable defines *where* in the code it can be accessed, and its **lifetime** defines *how long* it exists in memory.
+
+---
+
+### 1. Class (Static) Variables — Longest Lifetime
+- Declared with `static` in a class.
+- One copy per class (not per object).
+- Shared across all instances.
+- **Lifetime**: from when the class is loaded into the JVM until it is unloaded.
+- **Scope**: accessible anywhere the class is visible (depends on access modifier).
+
+---
+
+### 2. Instance Variables
+- Declared in a class, outside methods/constructors, **without `static`**.
+- One copy per object.
+- **Lifetime**: as long as the object is alive (until garbage collection).
+- **Scope**: accessible via a reference to the object (depends on access modifier).
+
+---
+
+### 3. Local Variables
+- Declared inside a method/constructor or as a parameter.
+- **Lifetime**: while the method is executing (on the call stack).
+- **Scope**: only within that method.
+- Must be **initialized before use** (no default values like fields).
+- Can only use `final` modifier.
+
+---
+
+### 4. Block Variables — Shortest Lifetime
+- Declared inside a block `{ ... }` (e.g., `if`, `for`, `while`).
+- **Lifetime**: only while the block executes.
+- **Scope**: not visible outside the block.
+- Inner variables can shadow outer ones with the same name.  
+
+
+## Modifiers for Variables
+
+### Additional  Modifiers (instance or static)
+- final: must be assigned once; cannot be changed later
+- static: shared across all instances of a class
+- transient: excluded from serialization
+- volatile: ensures visibility across threads; prevents caching/reordering
+
+👉 final and volatile cannot be used together.
+
+### Local Variables (inside methods)
+
+- Can use only final (or be effectively final).
+- Cannot use: public, private, protected, static, transient, volatile.
