@@ -24,10 +24,10 @@ examples: `src/course1/L2_Peps.java`
 
 ### Java has **four access levels**:
 
-1. **public**: Accessible **from anywhere**: same class, same package, different package. No restrictions.
-2. **protected**: Within the same package. In subclasses (child classes), even if they are in different packages. Useful with inheritance.
-3. **default**: When no modifier is specified. Accessible only within the same package. Not accessible outside the package.
-4. **private**: Accessible only within the same class. Not visible to other classes, even in the same package.
+1. `public`: Accessible **from anywhere**: same class, same package, different package. No restrictions.
+2. `protected`: Within the same package. In subclasses (child classes), even if they are in different packages. Useful with inheritance.
+3. `default`: When no modifier is specified. Accessible only within the same package. Not accessible outside the package.
+4. `private`: Accessible only within the same class. Not visible to other classes, even in the same package.
 
 - Access Modifiers & Package Scope
     - Default access (no modifier/package private): Class, interface, var, etc. are accessible only within the same package.
@@ -48,12 +48,12 @@ examples:
 - `src/course1/package1`
 - `src/course1/package2`
 
-| Modifier      | Same Class | Same Package | Subclass (diff package) | Other Package |
-| ------------- | ---------- | ------------ | ----------------------- | ------------- |
-| **public**    | ✅         | ✅            | ✅                      | ✅            |
-| **protected** | ✅         | ✅            | ✅                      | ❌            |
-| **default**   | ✅         | ✅            | ❌                      | ❌            |
-| **private**   | ✅         | ❌            | ❌                      | ❌            |
+| Modifier    | Same Class | Same Package | Subclass (diff package) | Other Package |
+|-------------| ---------- |--------------| ----------------------- | ------------- |
+| `public`    | ✅         | ✅            | ✅                      | ✅            |
+| `protected` | ✅         | ✅            | ✅                      | ❌            |
+| `default`   | ✅         | ✅            | ❌                      | ❌            |
+| `private`   | ✅         | ❌            | ❌                      | ❌            |
 
 ## Java Variables
 
@@ -65,16 +65,16 @@ example: `src/course1/L3_Variables.java`
 
 ### Primitive Sizes and Ranges
 
-| Type | Size | Range |
-|------|------|-------|
-| `byte` | 8 bits | -128 to 127 |
-| `short` | 16 bits | -32,768 to 32,767 |
-| `int` | 32 bits | -2³¹ to (2³¹ - 1) |
-| `long` | 64 bits | -2⁶³ to (2⁶³ - 1) |
-| `float` | 32 bits | decimal values (approx. 7 digits precision) |
-| `double` | 64 bits | decimal values (approx. 15 digits precision) |
-| `char` | 16 bits | single character / Unicode value |
-| `boolean` | - | true or false |
+| Type      | Size    | Range                                        |
+|-----------|---------|----------------------------------------------|
+| `byte`    | 8 bits  | -128 to 127                                  |
+| `short`   | 16 bits | -32,768 to 32,767                            |
+| `int`     | 32 bits | -2³¹ to (2³¹ - 1)                            |
+| `long`    | 64 bits | -2⁶³ to (2⁶³ - 1)                            |
+| `float`   | 32 bits | decimal values (approx. 7 digits precision)  |
+| `double`  | 64 bits | decimal values (approx. 15 digits precision) |
+| `char`    | 16 bits | single character / Unicode value             |
+| `boolean` | -       | true or false                                |
 
 ### Variable Types by Scope
 
@@ -106,13 +106,13 @@ example: `src/course1/L3_Variables.java`
 
 ### Default Values
 
-| Type | Default Value |
-|------|---------------|
-| `byte`/`short`/`int`/`long` | `0` |
-| `float`/`double` | `0.0` |
-| `boolean` | `false` |
-| `char` | `\u0000` |
-| Reference types | `null` |
+| Type                        | Default Value |
+|-----------------------------|---------------|
+| `byte`/`short`/`int`/`long` |  `0`          |
+| `float`/`double`            | `0.0`         |
+| `boolean`                   | `false`       |
+| `char`                      | `\u0000`      |
+| Reference types             | `null`        |
 
 ## Variable Assignment (Literals)
 
