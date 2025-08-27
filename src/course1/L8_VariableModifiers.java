@@ -1,6 +1,5 @@
 package course1;
 
-// File: L8_VariableModifiers.java
 public class L8_VariableModifiers {
 
     // ---------------- Field Modifiers ----------------

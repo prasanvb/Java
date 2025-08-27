@@ -1,6 +1,6 @@
 package course1;
 
-public class L7_ScopeOfVariablesDemo {
+public class L7_ScopeOfVar {
 
     // Class (static) variable: shared across all instances
     private static int staticCounter = 0;
@@ -8,12 +8,19 @@ public class L7_ScopeOfVariablesDemo {
     // Instance variable: one per object
     private final int instanceId;
 
-    public L7_ScopeOfVariablesDemo(int id) {
+    public L7_ScopeOfVar(int id) {
         this.instanceId = id;
         staticCounter++; // All instances see the same staticCounter
     }
 
-    void demonstrateLocalAndBlockScope() {
+    static void printStaticState() {
+        System.out.println("[static] staticCounter = " + staticCounter);
+
+        // ❌  Would not compile: instanceId not accessible
+        // System.out.println("instanceId "+ instanceId);
+    }
+
+    void localAndBlockScope() {
         int local = 42; // Local variable: exists only during this method call
         System.out.println("[method] local = " + local);
 
@@ -26,24 +33,20 @@ public class L7_ScopeOfVariablesDemo {
         // System.out.println(inBlock);
     }
 
-    static void printStaticState() {
-        System.out.println("[static] staticCounter = " + staticCounter);
-        // ❌ instanceId not accessible here
-    }
 
     public static void main(String[] args) {
-        L7_ScopeOfVariablesDemo.printStaticState();
+        L7_ScopeOfVar.printStaticState(); // static before  instance call
 
-        L7_ScopeOfVariablesDemo a = new L7_ScopeOfVariablesDemo(1);
-        L7_ScopeOfVariablesDemo b = new L7_ScopeOfVariablesDemo(2);
+        L7_ScopeOfVar a = new L7_ScopeOfVar(1);
+        L7_ScopeOfVar b = new L7_ScopeOfVar(2);
 
         System.out.println("a.instanceId = " + a.instanceId);
         System.out.println("b.instanceId = " + b.instanceId);
 
-        L7_ScopeOfVariablesDemo.printStaticState(); // static is shared
+        L7_ScopeOfVar.printStaticState(); // static after instance call
 
-        a.demonstrateLocalAndBlockScope();
+        a.localAndBlockScope();
 
-        System.out.println("Static via class: " + L7_ScopeOfVariablesDemo.staticCounter);
+        System.out.println("Static accessed via class directly: " + L7_ScopeOfVar.staticCounter);
     }
 }

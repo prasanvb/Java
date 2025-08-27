@@ -2,16 +2,19 @@ package course1;
 
 public class L2_Peps {
     public static void main(String[] args) {
-        // Using default constructor + field assignments
-        Person alex = new Person();
-        alex.name = "Alex";
-        alex.age = 8;
-        alex.child = true;
-        alex.gender = Gender.MALE;
-        alex.city = "Vancouver";
-        alex.sleep();
+
+        // Using no-arg constructor + field assignments
+        // Order and count of parameters DOES NOT matter
+        Person x = new Person();
+        x.name="X";
+        x.gender = Gender.nonBinary;
+        x.sleep();
 
         // Using parameterized constructor
+        // Order and count of parameters matter
+        Person alex = new Person("Alex", 8, Gender.MALE);
+        alex.sleep();
+
         Person mia = new Person("Mia", 62, Gender.FEMALE, false, "Toronto");
         mia.sleep();
     }
@@ -19,7 +22,9 @@ public class L2_Peps {
 
 enum Gender {
     MALE,
-    FEMALE
+    FEMALE,
+    nonBinary,
+
 }
 
 class Person {
@@ -30,11 +35,17 @@ class Person {
     String city;
 
     // Constructor overloading
-    // ✅ No-arg constructor (needed for Alex style)
-    public Person() {}
+    // ✅ No-arg constructor
+    Person() {}
 
-    // ✅ Parameterized constructor (needed for Mia style)
-    public Person(String name, int age, Gender gender, boolean child, String city) {
+    // ✅ Parameterized constructor
+    public Person(String name, int age, Gender gender) {
+        this.name = name;
+        this.age = age;
+        this.gender = gender;
+    }
+
+    Person(String name, int age, Gender gender, boolean child, String city) {
         this.name = name;
         this.age = age;
         this.gender = gender;
