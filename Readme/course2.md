@@ -1,4 +1,4 @@
-# Java Objects
+# Java Objects, Constructors, Static
 
 ## Method Structure & Parameters
 
@@ -169,3 +169,45 @@ public final class Constants {
     private Constants() { }
 }
 ```
+
+## Static
+
+### What is static in Java?
+- static is a non-access modifier in Java.
+- It can be applied to: Variables, Methods, Blocks, Nested Classes
+
+Key Rule:
+- Static members belong to the class itself, not to instances (objects).
+- They are created when the class is loaded, even before any object is created and shared across all objects of the class.
+
+### Static Variables
+
+- Declared using static keyword. Common for all objects (shared state).
+- Created only once, stored in method area (class area).
+
+### Static Methods
+
+- Declared with static keyword. 
+- Belong to the class, not to an object.
+- Cannot access instance variables or instance methods directly because they don’t depend on objects.
+- Accessed directly using class name. 
+  - Example: Math.random(), Math.PI.
+
+### Why is main() static?
+JVM needs to call it without creating an object. If main were not static, JVM would face ambiguity (which constructor to use?).
+
+### Static Blocks
+
+- Used to initialize static variables.
+- Executed when the class is loaded.
+- If multiple static blocks exist, they execute in order of declaration.
+
+### Static Nested Classes
+- A class defined inside another class can be marked static.
+- Static nested class:
+  - Can be instantiated without creating an object of the outer class.
+  - Can access only static members of the outer class.
+- Non-static inner class:
+  - Requires an instance of the outer class.
+  - Can access both static and non-static members of outer class.
+  - 
