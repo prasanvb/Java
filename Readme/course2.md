@@ -106,8 +106,66 @@ modifier returnType methodName(parameters) {
 ### Singleton Design Pattern
 
 **Goal**: Ensure that a class has only **one instance** in the entire JVM.
-
 **Why use private constructor?**
 - To prevent external instantiation (`new` keyword).
 - Instance creation is controlled internally via a static method.
   **Example**: Database connection manager, logging system.
+
+### **Utility or Helper Classes**
+
+**Goal**: Contain only **static methods or constants**.
+**Why use private constructor?**
+- Prevents creation of unnecessary objects (no sense in creating an instance for static methods).
+**Examples**: `java.lang.Math`, `java.util.Collections`.
+
+```text
+public class MathUtils {
+    // Prevent instantiation
+    private MathUtils() { }
+
+    public static int square(int n) {
+        return n * n;
+    }
+}
+
+// Usage
+int result = MathUtils.square(5); // No object needed
+```
+
+### **Immutable Classes with Factory Methods**
+
+**Goal**: Provide **controlled instance creation** through static factory methods.
+**Why use private constructor?**
+- Forces developers to use factory methods (`of`, `valueOf`, `getInstance`, etc.).
+
+```text
+public class Color {
+    private String name;
+
+    // Private constructor
+    private Color(String name) {
+        this.name = name;
+    }
+
+    // Factory methods
+    public static Color red()   { return new Color("Red"); }
+    public static Color blue()  { return new Color("Blue"); }
+}
+```
+
+### **Restricting Inheritance**
+
+**Goal**: Prevent subclassing of a class.
+**Why use private constructor?**
+- If all constructors are private, no subclass can extend it because the superclass constructor cannot be called.
+- Often combined with `final` modifier.
+**Example**: Useful in constants-only classes.
+
+```text
+public final class Constants {
+    public static final String APP_NAME = "MyApp";
+
+    // Prevent inheritance & instantiation
+    private Constants() { }
+}
+```
