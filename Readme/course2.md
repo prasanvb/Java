@@ -71,7 +71,6 @@ modifier returnType methodName(parameters) {
 
 ## Enhanced Switch Expressions (Java 17)
 
-Key points
 - No break statements required.
 - More concise and readable.
 - Returns value directly from the switch.
@@ -80,3 +79,35 @@ Key points
 - Block Syntax with yield. Useful for multi-line logic in a case.
 - Improves readability and reduces repetition.
 
+## Constructors in-depth
+
+- **Default Constructor**: If **no constructor** is declared in a class, the Java compiler automatically generates a **no-argument default constructor**, which calls `super()` and leaves fields with default values (e.g., `null` for objects, `0` for numbers)
+- **Default Constructor Behavior**: Java creates a default no-arg constructor only if none is defined. If you define one (even a no-arg one), the compiler does not generate any additional default constructor.
+- **`super()` Invocation**: A constructor always starts by calling its superclass constructor. If not explicitly written, the compiler inserts `super()` automatically (which calls the no-arg constructor of the superclass).
+- **Parameterized Constructor**: Allows initializing instance variables at object creation by accepting parameters. Remaining variables retain their default values.- **Constructor Overloading**: A class can have multiple constructors with different parameter lists. The JVM picks the right one at instantiation by matching the arguments.
+- **`this()` Constructor Chaining**: You can call another constructor of the same class using `this()`. If used, the compiler does **not** insert `super()` automatically---you must ensure correct chaining.
+- **Example with Inheritance and Chaining**: Constructors cascade: child → own constructors → possibly another constructor via `this(...)` → `super()` → up to `Object` class.
+- **Access Modifiers**: Constructors can have any access modifier: `public`, `protected`, package-private (default), or `private`.
+- **Name and No Return Type**: The constructor name must **match the class name** and it must not declare a return type (not even `void`).
+- **Calling Constructors**: Within a class, you can only invoke other constructors using `this(...)` or call superclass constructors via `super(...)`.
+- **All Classes Have Constructors**: Abstract classes can have constructors, but **interfaces cannot**.
+- **Instance Members Not Accessible Before Super**: You cannot refer to instance methods or variables before the superclass constructor completes.
+- **Superclass Default Constructor Requirement**: If the superclass lacks a no-arg constructor, your subclass must explicitly call `super(...)` with appropriate arguments, or compilation fails. 
+
+## Access Modifiers for Constructors
+
+- **`public` Constructor**: Accessible from anywhere (given class is visible).
+- **`protected` Constructor**: Accessible within the same package or from subclasses in other packages.
+- **Default (package-private)**: Accessible only within the same package.
+- **`private` Constructor**: Accessible only within its own class.
+
+## Use Cases for `private` Constructors
+
+### Singleton Design Pattern
+
+**Goal**: Ensure that a class has only **one instance** in the entire JVM.
+
+**Why use private constructor?**
+- To prevent external instantiation (`new` keyword).
+- Instance creation is controlled internally via a static method.
+  **Example**: Database connection manager, logging system.
