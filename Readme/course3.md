@@ -29,7 +29,9 @@
 
 -  Inheritance is an Object-Oriented Programming (OOP) concept where one class (child/subclass) derives properties and behaviors (fields and methods) from another class (parent/superclass).
 - `extends` keyword is used for inheritance.
-- Java only supports single inheritance (a class can extend only one direct parent).
+- Java only supports single inheritance (a class can extend only one direct parent). Java does not allow multiple inheritance of classes to avoid ambiguity
+- In Java, every class ultimately inherits from `java.lang.Object`.
+  - If you don’t write an extends clause, the compiler treats your class as implicitly extending Object. That’s why all classes have methods like `equals`, `hashCode`, and `toString` available.
 
 **Method Overriding**: If a subclass defines a method with the same signature as the superclass method, it overrides the parent's version. This allows the child class to provide its own implementation.
     - `@Override` Indicates that a method declaration is intended to override a method declaration in a supertype 
@@ -85,7 +87,7 @@ Human h2 = new Musician(); // Reference type = Human, Object type = Musician
 h1.speak(); // Executes Human.speak() because Artist did not override speak()
 
 h2.speak(); // Executes Musician.speak() because Musician overrides speak()
-h2.playKeyboard(); // ❌ Cannot resolve method 'playKeyboard' in 'Human'        
+h2.playMusicalInstruments(); // ❌ Cannot resolve method 'playMusicalInstruments' in 'Human'        
 ```
 
 #### Why Polymorphism is Useful
@@ -93,3 +95,9 @@ h2.playKeyboard(); // ❌ Cannot resolve method 'playKeyboard' in 'Human'
 - **Code Reusability:** You can write methods that accept the parent type, but they work with any subclass.
 - **Flexibility:** Easy to extend systems by adding new subclasses without changing existing logic.
 - **Cleaner Code:** You don't need separate methods for each subclass — you rely on the parent type.
+
+## final and inheritance
+
+- **final class**: cannot be subclassed. A compile-time error occurs if you try to extends a final class.
+- **final method**: cannot be overridden in a subclass.
+- **final variable**: once initialized, it cannot be reassigned (you can set it in the declaration or constructor, but not modify afterward).
