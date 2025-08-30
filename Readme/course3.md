@@ -1,4 +1,4 @@
-# OOPS - Inheritance, Interface, Abstract Class
+# OOPS - Inheritance, Polymorphism, Interface, Abstract Class, Encapsulation, Records
 
 ## Lesson 1: Inheritance
 
@@ -233,7 +233,6 @@ Encapsulation is the practice of **hiding the internal details (data/variables)*
 1. Declare **variables as `private`** and provide **public methods** to access them.
 2. Provide **public getter and setter methods** to enforce rules (validation, read-only/write-only) and access them.
 
-
 ## Lesson 6: Records
 
 ### POJOs
@@ -332,3 +331,57 @@ A record is a transparent, immutable data carrier class in Java that automatical
 | Fields      | mutable or immutable           | usually immutable                              | always immutable (`final`)         |
 | Logic       | may contain business logic     | should contain **no business logic**           | minimal logic (validation allowed) |
 | Boilerplate | requires getters/setters, etc. | requires getters                               | auto-generated                     |
+
+
+## Sealed Classes
+
+### What Are Sealed Classes?
+
+- **Sealed classes** and **sealed interfaces** restrict which classes or interfaces can extend or implement them.
+- Purpose: Give the class designer **explicit control** over the class hierarchy.
+- Benefits:
+    - **Safer and more predictable inheritance**
+    - **Better code maintainability**
+    - **Works well with pattern matching and switch expressions**
+
+### Syntax Overview
+
+#### Declaring a Sealed Class
+
+```java
+public sealed class Vehicle permits Car, Bike {
+    // common code
+}
+```
+
+- `sealed` keyword marks the class as restricted.
+- `permits` lists allowed subclasses.
+
+#### Subclass Types
+
+- `final` → cannot be subclassed further
+- `sealed` → further restrict subclassing with own permits
+- `non-sealed` → open for unrestricted subclassing
+
+```java
+public final class Car extends Vehicle {
+    // Car cannot be extended
+}
+
+public non-sealed class Bike extends Vehicle {
+    // Bike can be freely extended
+}
+```
+
+### Uses of Sealed Classes
+
+- Prevent **uncontrolled sub-classing**
+- Enforce **security and design constraints**
+- Ensure **consistent modeling** (useful for domain-specific hierarchies like shapes, payment types)
+
+### Key Points
+
+- Permitted subclasses **must** be in the same package (or module).
+- Subclasses **must** explicitly extend/implement the sealed type.
+- Subclasses **must** be `final`, `sealed`, or `non-sealed`.
+- Helps in **exhaustive switch**, **pattern matching**, and **domain-specific modeling**.
