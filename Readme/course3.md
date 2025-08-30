@@ -1,6 +1,6 @@
 # OOPS - Inheritance, Interface, Abstract Class
 
-## Inheritance
+## Lesson 1: Inheritance
 
                 ┌──────────────┐
                 │    Human     │
@@ -43,6 +43,85 @@
 **Example analogy:**
 - Human → superclass
 - Artist, Musician → subclasses (all humans, but with extra talents)
+
+## final and inheritance
+
+- **final class**: cannot be subclassed. A compile-time error occurs if you try to extends a final class.
+- **final method**: cannot be overridden in a subclass.
+- **final variable**: once initialized, it cannot be reassigned (you can set it in the declaration or constructor, but not modify afterward).
+
+## Lesson 3: Interfaces
+
+### What is an Interface?
+
+- An **interface** in Java is similar to a class, but instead of defining how things work, it only defines **what must be done**.
+- It is a **blueprint for classes**, just like classes are blueprints for objects.
+- Interfaces contain:
+    - **Abstract methods** (methods without a body).
+    - **Constants** (all fields are implicitly `public static final`).
+- Purpose: Interfaces define a **contract** for classes to follow. They don’t tell **how**, but **what** needs to be done.
+
+### Characteristics of Interfaces
+
+- **All methods** are `public abstract` by default (unless declared as `default` or `static`).
+- **All variables** are `public static final` (constants).
+- An interface **cannot have constructors** (so they cannot be instantiated).
+- A class uses the **`implements`** keyword to inherit an interface.
+- An interface can **extend another interface**.
+- A class can **implement multiple interfaces**, supporting multiple inheritance indirectly.
+- **Default methods** (Java 8+) allow interfaces to evolve without breaking existing code.
+    - **NOTE:** If multiple interfaces have the same `default` method → must override to resolve ambiguity.
+
+## Lesson 4: Abstract class
+
+### What is an Abstract Class?
+
+- It is declared using the `abstract` keyword.
+- It acts as a **partial blueprint** for other classes:
+    - Can contain **abstract methods** (methods without implementation).
+    - Can contain **concrete methods** (methods with implementation).
+- An **abstract class** in Java is a class that **cannot be instantiated** (i.e., you cannot create objects of it directly).
+    - You have to inherit (i.e. extend) an abstract class and then you can instantiate the subclass
+- Abstract means “incomplete”
+    - An abstract class may have abstract methods (methods without a body). Because these methods don’t have implementations, Java cannot create a complete object from the abstract class — it doesn’t know how those methods should behave.
+- Constructors in Abstract Classes
+    - Abstract classes can have constructors. These constructors are not for creating abstract objects, but for initializing common state when a concrete subclass is instantiated.
+
+### Key Properties of Abstract Classes
+
+- If a class has **at least one abstract method**, it must be declared as `abstract`.
+- Abstract classes can contain:
+    - **Fields** (variables).
+    - **Constructors** (though you can’t instantiate it, constructors can be used by subclasses).
+    - **Concrete methods** (fully implemented).
+    - **Abstract methods** (must be implemented by subclasses, unless the subclass is also abstract).
+- A subclass must:
+    - **Implement all abstract methods** of its abstract superclass, OR
+    - Be declared `abstract` itself.
+- Abstract classes are widely used in frameworks and base class hierarchies to enforce a **common contract + shared functionality**.
+
+## Difference Between Class, Interface, and Abstract Class
+
+| Feature                      | Normal Class | Interface                                | Abstract Class |
+|------------------------------|--------------|------------------------------------------|----------------|
+| Can have variables           | ✅            | ❌ (only constants unless `static final`) | ✅              |
+| Can have implemented methods | ✅            | ✅ (since Java 8 with `default`)          | ✅              |
+| Can have abstract methods    | ❌            | ✅                                        | ✅              |
+| Object creation allowed      | ✅            | ❌                                        | ❌              |
+
+## Interface vs Abstract
+
+| Feature              | **Interface**                                                                                                                                                                       | **Abstract Class**                                                                                                                                  |
+|----------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Method Types**     | - Abstract methods (always `public abstract` by default)<br>- `default` methods (Java 8+)<br>- `static` methods (Java 8+)<br>- `private` methods (Java 9+ for internal helper code) | - Abstract methods<br>- Concrete methods (normal methods with body)<br>- Can also define `static` and `final` methods                               |
+| **Variables**        | - All variables are `public static final` (constants).<br>- Must be initialized at declaration.                                                                                     | - Can have instance variables (with different access modifiers: `private`, `protected`, etc.).<br>- Can have mutable state (not necessarily final). |
+| **Constructors**     | ❌ Interfaces cannot have constructors.                                                                                                                                              | ✅ Abstract classes can have constructors (called when subclass objects are created).                                                                |
+| **Inheritance**      | - A class can **implement multiple interfaces**.<br>- An interface can **extend multiple interfaces**.                                                                              | - A class can **extend only one abstract class** (single inheritance).                                                                              |
+| **Access Modifiers** | - Methods are implicitly `public`.<br>- Cannot use `protected` or `private` (except for Java 9+ private helper methods).                                                            | - Methods and variables can have any access modifier (`public`, `protected`, `private`).                                                            |
+| **When to Use**      | - To define a **contract/ability** for unrelated classes (e.g., `Comparable`, `Serializable`).<br>- When you want **multiple inheritance of type**.                                 | - To share **common state + behavior** among related classes.<br>- When you want **code reuse** with partial implementation.                        |
+
+
+
 
 ## Polymorphism
 
@@ -96,80 +175,29 @@ h2.playMusicalInstruments(); // ❌ Cannot resolve method 'playMusicalInstrument
 - **Flexibility:** Easy to extend systems by adding new subclasses without changing existing logic.
 - **Cleaner Code:** You don't need separate methods for each subclass — you rely on the parent type.
 
-## final and inheritance
 
-- **final class**: cannot be subclassed. A compile-time error occurs if you try to extends a final class.
-- **final method**: cannot be overridden in a subclass.
-- **final variable**: once initialized, it cannot be reassigned (you can set it in the declaration or constructor, but not modify afterward).
+## Lesson 5: Encapsulation
 
-## Interfaces
+### 🔹 What is Encapsulation?
 
-### What is an Interface?
+Encapsulation is one of the four pillars of **Object-Oriented
+Programming (OOP)** (others: Inheritance, Polymorphism, Abstraction).
 
-- An **interface** in Java is similar to a class, but instead of defining how things work, it only defines **what must be done**.
-- It is a **blueprint for classes**, just like classes are blueprints for objects.
-- Interfaces contain:
-    - **Abstract methods** (methods without a body).
-    - **Constants** (all fields are implicitly `public static final`).
-- Purpose: Interfaces define a **contract** for classes to follow. They don’t tell **how**, but **what** needs to be done.
+👉 Definition:
+Encapsulation is the practice of **hiding the internal details (data/variables)** of a class and providing controlled access to them using **methods (getters & setters)**.
 
-### Characteristics of Interfaces
+- **Hide unnecessary details** → Keep variables private.
+- **Expose only required details** → Provide public methods to
+  interact.
 
-- **All methods** are `public abstract` by default (unless declared as `default` or `static`).
-- **All variables** are `public static final` (constants).
-- An interface **cannot have constructors** (so they cannot be instantiated).
-- A class uses the **`implements`** keyword to inherit an interface.
-- An interface can **extend another interface**.
-- A class can **implement multiple interfaces**, supporting multiple inheritance indirectly.
-- **Default methods** (Java 8+) allow interfaces to evolve without breaking existing code.
-    - **NOTE:** If multiple interfaces have the same `default` method → must override to resolve ambiguity.
+## 🔹 Why Encapsulation?
 
-## Difference Between Class, Interface, and Abstract Class
+- Protects data from unintended modification and provides controlled access.
+- Adds **flexibility** and improves **maintainability** (future-proof code).
+- Allows **read-only / write-only** access.
+- Enables **validation logic** inside setters.
 
-| Feature                      | Normal Class | Interface                                | Abstract Class |
-|------------------------------|--------------|------------------------------------------|----------------|
-| Can have variables           | ✅            | ❌ (only constants unless `static final`) | ✅              |
-| Can have implemented methods | ✅            | ✅ (since Java 8 with `default`)          | ✅              |
-| Can have abstract methods    | ❌            | ✅                                        | ✅              |
-| Object creation allowed      | ✅            | ❌                                        | ❌              |
+## 🔹 Key Takeaways
 
-## Interface vs Abstract
-
-| Feature              | **Interface**                                                                                                                                                                       | **Abstract Class**                                                                                                                                  |
-|----------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Method Types**     | - Abstract methods (always `public abstract` by default)<br>- `default` methods (Java 8+)<br>- `static` methods (Java 8+)<br>- `private` methods (Java 9+ for internal helper code) | - Abstract methods<br>- Concrete methods (normal methods with body)<br>- Can also define `static` and `final` methods                               |
-| **Variables**        | - All variables are `public static final` (constants).<br>- Must be initialized at declaration.                                                                                     | - Can have instance variables (with different access modifiers: `private`, `protected`, etc.).<br>- Can have mutable state (not necessarily final). |
-| **Constructors**     | ❌ Interfaces cannot have constructors.                                                                                                                                              | ✅ Abstract classes can have constructors (called when subclass objects are created).                                                                |
-| **Inheritance**      | - A class can **implement multiple interfaces**.<br>- An interface can **extend multiple interfaces**.                                                                              | - A class can **extend only one abstract class** (single inheritance).                                                                              |
-| **Access Modifiers** | - Methods are implicitly `public`.<br>- Cannot use `protected` or `private` (except for Java 9+ private helper methods).                                                            | - Methods and variables can have any access modifier (`public`, `protected`, `private`).                                                            |
-| **When to Use**      | - To define a **contract/ability** for unrelated classes (e.g., `Comparable`, `Serializable`).<br>- When you want **multiple inheritance of type**.                                 | - To share **common state + behavior** among related classes.<br>- When you want **code reuse** with partial implementation.                        |
-
-
-## Abstract class
-
-### What is an Abstract Class?
-
-- It is declared using the `abstract` keyword.
-- It acts as a **partial blueprint** for other classes:
-    - Can contain **abstract methods** (methods without implementation).
-    - Can contain **concrete methods** (methods with implementation).
-- An **abstract class** in Java is a class that **cannot be instantiated** (i.e., you cannot create objects of it directly).
-    - You have to inherit (i.e. extend) an abstract class and then you can instantiate the subclass
-- Abstract means “incomplete”
-    - An abstract class may have abstract methods (methods without a body). Because these methods don’t have implementations, Java cannot create a complete object from the abstract class — it doesn’t know how those methods should behave.
-- Constructors in Abstract Classes
-    - Abstract classes can have constructors. These constructors are not for creating abstract objects, but for initializing common state when a concrete subclass is instantiated.
-
-### Key Properties of Abstract Classes
-
-- If a class has **at least one abstract method**, it must be declared as `abstract`.
-- Abstract classes can contain:
-    - **Fields** (variables).
-    - **Constructors** (though you can’t instantiate it, constructors can be used by subclasses).
-    - **Concrete methods** (fully implemented).
-    - **Abstract methods** (must be implemented by subclasses, unless the subclass is also abstract).
-- A subclass must:
-    - **Implement all abstract methods** of its abstract superclass, OR
-    - Be declared `abstract` itself.
-- Abstract classes are widely used in frameworks and base class hierarchies to enforce a **common contract + shared functionality**.
-
+1. Declare **variables as `private`** and provide **public methods** to access them.
+2. Provide **public getter and setter methods** to enforce rules (validation, read-only/write-only) and access them.
