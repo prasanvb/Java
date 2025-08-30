@@ -101,3 +101,36 @@ h2.playMusicalInstruments(); // ❌ Cannot resolve method 'playMusicalInstrument
 - **final class**: cannot be subclassed. A compile-time error occurs if you try to extends a final class.
 - **final method**: cannot be overridden in a subclass.
 - **final variable**: once initialized, it cannot be reassigned (you can set it in the declaration or constructor, but not modify afterward).
+
+## Interfaces
+
+### What is an Interface?
+
+- An **interface** in Java is similar to a class, but instead of defining how things work, it only defines **what must be done**.
+- It is a **blueprint for classes**, just like classes are blueprints for objects.
+- Interfaces contain:
+    - **Abstract methods** (methods without a body).
+    - **Constants** (all fields are implicitly `public static final`).
+- Purpose: Interfaces define a **contract** for classes to follow. They don’t tell **how**, but **what** needs to be done.
+
+### Characteristics of Interfaces
+
+- **All methods** are `public abstract` by default (unless declared as `default` or `static`).
+- **All variables** are `public static final` (constants).
+- An interface **cannot have constructors** (so they cannot be instantiated).
+- A class uses the **`implements`** keyword to inherit an interface.
+- An interface can **extend another interface**.
+- A class can **implement multiple interfaces**, supporting multiple inheritance indirectly.
+- **Default methods** (Java 8+) allow interfaces to evolve without breaking existing code.
+    - **NOTE:** If multiple interfaces have the same `default` method → must override to resolve ambiguity.
+
+## Interface vs Abstract
+
+| Feature              | **Interface**                                                                                                                                                                       | **Abstract Class**                                                                                                                                  |
+|----------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Method Types**     | - Abstract methods (always `public abstract` by default)<br>- `default` methods (Java 8+)<br>- `static` methods (Java 8+)<br>- `private` methods (Java 9+ for internal helper code) | - Abstract methods<br>- Concrete methods (normal methods with body)<br>- Can also define `static` and `final` methods                               |
+| **Variables**        | - All variables are `public static final` (constants).<br>- Must be initialized at declaration.                                                                                     | - Can have instance variables (with different access modifiers: `private`, `protected`, etc.).<br>- Can have mutable state (not necessarily final). |
+| **Constructors**     | ❌ Interfaces cannot have constructors.                                                                                                                                              | ✅ Abstract classes can have constructors (called when subclass objects are created).                                                                |
+| **Inheritance**      | - A class can **implement multiple interfaces**.<br>- An interface can **extend multiple interfaces**.                                                                              | - A class can **extend only one abstract class** (single inheritance).                                                                              |
+| **Access Modifiers** | - Methods are implicitly `public`.<br>- Cannot use `protected` or `private` (except for Java 9+ private helper methods).                                                            | - Methods and variables can have any access modifier (`public`, `protected`, `private`).                                                            |
+| **When to Use**      | - To define a **contract/ability** for unrelated classes (e.g., `Comparable`, `Serializable`).<br>- When you want **multiple inheritance of type**.                                 | - To share **common state + behavior** among related classes.<br>- When you want **code reuse** with partial implementation.                        |
