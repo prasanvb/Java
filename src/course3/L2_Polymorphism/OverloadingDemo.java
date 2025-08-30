@@ -1,9 +1,11 @@
 package course3.L2_Polymorphism;
 
-class CatOverload {
+class Goat {
     private int minimumSpeed;
 
-    public void setMinimumSpeed(int speed) { this.minimumSpeed = speed; }
+    public void setMinimumSpeed(int speed) {
+        this.minimumSpeed = speed;
+    }
 
     // Base run method
     public void run() {
@@ -13,20 +15,20 @@ class CatOverload {
     // Overloaded run method
     public String run(boolean hasDanger) {
         if (hasDanger) {
-            return "Cat is in danger! Running at " + (minimumSpeed * 2) + " km/h.";
+            return "Goat is in danger! Running at " + (minimumSpeed * 2) + " km/h.";
         } else {
-            return "Cat is safe. Running at " + minimumSpeed + " km/h.";
+            return "Goat is safe. Running at " + minimumSpeed + " km/h.";
         }
     }
 }
 
 public class OverloadingDemo {
     public static void main(String[] args) {
-        CatOverload cat = new CatOverload();
-        cat.setMinimumSpeed(24);
+        Goat goat = new Goat();
+        goat.setMinimumSpeed(24);
 
-        cat.run();  // no parameter
-        System.out.println(cat.run(true));   // overloaded with parameter
-        System.out.println(cat.run(false));
+        goat.run();  // no parameter
+        System.out.println(goat.run(true));   // overloaded with parameter
+        System.out.println(goat.run(false));
     }
 }
