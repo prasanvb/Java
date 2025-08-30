@@ -27,20 +27,23 @@
 
 ### What is Inheritance?
 
--  Inheritance is an Object-Oriented Programming (OOP) concept where one class (child/subclass) derives properties and behaviors (fields and methods) from another class (parent/superclass).
+- Inheritance is an Object-Oriented Programming (OOP) concept where one class (child/subclass) derives properties and behaviors (fields and methods) from another class (parent/superclass).
 - `extends` keyword is used for inheritance.
 - Java only supports single inheritance (a class can extend only one direct parent). Java does not allow multiple inheritance of classes to avoid ambiguity
 - In Java, every class ultimately inherits from `java.lang.Object`.
-  - If you don’t write an extends clause, the compiler treats your class as implicitly extending Object. That’s why all classes have methods like `equals`, `hashCode`, and `toString` available.
+    - If you don’t write an extends clause, the compiler treats your class as implicitly extending Object. That’s why all classes have methods like `equals`, `hashCode`, and `toString` available.
 
 **Method Overriding**: If a subclass defines a method with the same signature as the superclass method, it overrides the parent's version. This allows the child class to provide its own implementation.
-    - `@Override` Indicates that a method declaration is intended to override a method declaration in a supertype 
+
+- `@Override` Indicates that a method declaration is intended to override a method declaration in a supertype
 
 **Purpose:**
+
 - **Reusability:** Avoids code duplication by reusing common attributes/methods from a superclass. Instead of redefining the same behavior (e.g., walk, speak) in multiple classes, we define them once in the parent class (Human) and inherit them in subclasses.
 - **Polymorphism:** Allows treating different subclasses in a uniform way through their superclass reference.
 
 **Example analogy:**
+
 - Human → superclass
 - Artist, Musician → subclasses (all humans, but with extra talents)
 
@@ -69,11 +72,12 @@ In Java, polymorphism means a single interface (method signature) can represent 
 - Achieved by **method overloading** (same method name, but different parameter list).
 
 ```java
-class Calculator {
-    int add(int a, int b) { return a + b; }
-    double add(double a, double b) { return a + b; }
-}
+    class Calculator {
+        int add(int a, int b) { return a + b; }
+        double add(double a, double b) { return a + b; }
+    }
 ```
+
 ##### Rules
 
 1. Must change **parameter list** (number, type, or order).
@@ -100,39 +104,38 @@ class Calculator {
 - Use `@Override` annotation to improve readability and avoid mistakes.
 
 ```java
-class Human {
-    public void speak() { 
-        // Human speak 
-    }
-}
-
-class PolymorphismExample {
-    @Override
-    public void speak(){ 
-        // Musician sing 
+    class Human {
+        public void speak() {
+            // Human speak
+        }
     }
 
-    public static void main(String[] args){
-        Human h1 = new Artist();   // Reference = Human, Object = Artist
-        Human h2 = new Musician(); // Reference = Human, Object = Musician
-        
-        h1.speak(); // Executes Human.speak() if Artist does not override
-        h.speak(); // calls Musician's overridden Musician.speak() at runtime
+    class PolymorphismExample {
+        @Override
+        public void speak(){
+            // Musician sing
+        }
+
+        public static void main(String[] args){
+            Human h1 = new Artist();   // Reference = Human, Object = Artist
+            Human h2 = new Musician(); // Reference = Human, Object = Musician
+
+            h1.speak(); // Executes Human.speak() if Artist does not override
+            h.speak(); // calls Musician's overridden Musician.speak() at runtime
+        }
     }
-}
 ```
 
 ### Key Differences Between Overriding & Overloading
 
 | Feature                   | Overriding (Runtime) | Overloading (Compile-time)          |
-|---------------------------|----------------------|-------------------------------------|
+| ------------------------- | -------------------- | ----------------------------------- |
 | **Polymorphism Type**     | Runtime              | Compile-time                        |
 | **Method Signature**      | Must be same         | Must be different                   |
 | **Return Type**           | Same or subtype      | Can be different (if params differ) |
 | **Access Modifier**       | Cannot reduce        | Can change                          |
 | **Inheritance Required?** | Yes                  | No (same class is enough)           |
 | **Final/Static Methods**  | Cannot be overridden | Can be overloaded                   |
-
 
 ### Why Polymorphism is Useful
 
@@ -192,20 +195,20 @@ class PolymorphismExample {
 
 ## Difference Between Class, Interface, and Abstract Class
 
-| Feature                      | Normal Class | Interface                                | Abstract Class |
-|------------------------------|--------------|------------------------------------------|----------------|
-| Can have variables           | ✅            | ❌ (only constants unless `static final`) | ✅              |
-| Can have implemented methods | ✅            | ✅ (since Java 8 with `default`)          | ✅              |
-| Can have abstract methods    | ❌            | ✅                                        | ✅              |
-| Object creation allowed      | ✅            | ❌                                        | ❌              |
+| Feature                      | Normal Class | Interface                                 | Abstract Class |
+| ---------------------------- | ------------ | ----------------------------------------- | -------------- |
+| Can have variables           | ✅           | ❌ (only constants unless `static final`) | ✅             |
+| Can have implemented methods | ✅           | ✅ (since Java 8 with `default`)          | ✅             |
+| Can have abstract methods    | ❌           | ✅                                        | ✅             |
+| Object creation allowed      | ✅           | ❌                                        | ❌             |
 
 ## Interface vs Abstract
 
 | Feature              | **Interface**                                                                                                                                                                       | **Abstract Class**                                                                                                                                  |
-|----------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------|
+| -------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------- |
 | **Method Types**     | - Abstract methods (always `public abstract` by default)<br>- `default` methods (Java 8+)<br>- `static` methods (Java 8+)<br>- `private` methods (Java 9+ for internal helper code) | - Abstract methods<br>- Concrete methods (normal methods with body)<br>- Can also define `static` and `final` methods                               |
 | **Variables**        | - All variables are `public static final` (constants).<br>- Must be initialized at declaration.                                                                                     | - Can have instance variables (with different access modifiers: `private`, `protected`, etc.).<br>- Can have mutable state (not necessarily final). |
-| **Constructors**     | ❌ Interfaces cannot have constructors.                                                                                                                                              | ✅ Abstract classes can have constructors (called when subclass objects are created).                                                                |
+| **Constructors**     | ❌ Interfaces cannot have constructors.                                                                                                                                             | ✅ Abstract classes can have constructors (called when subclass objects are created).                                                               |
 | **Inheritance**      | - A class can **implement multiple interfaces**.<br>- An interface can **extend multiple interfaces**.                                                                              | - A class can **extend only one abstract class** (single inheritance).                                                                              |
 | **Access Modifiers** | - Methods are implicitly `public`.<br>- Cannot use `protected` or `private` (except for Java 9+ private helper methods).                                                            | - Methods and variables can have any access modifier (`public`, `protected`, `private`).                                                            |
 | **When to Use**      | - To define a **contract/ability** for unrelated classes (e.g., `Comparable`, `Serializable`).<br>- When you want **multiple inheritance of type**.                                 | - To share **common state + behavior** among related classes.<br>- When you want **code reuse** with partial implementation.                        |
@@ -240,9 +243,9 @@ Encapsulation is the practice of **hiding the internal details (data/variables)*
 - Stands for Plain Old Java Object.
 - Any simple Java object not bound by any special restriction.
 - Usually contains:
-  - Fields (private variables) mutable or immutable
-  - Getters and setters
-  - Maybe toString(), equals(), hashCode()
+    - Fields (private variables) mutable or immutable
+    - Getters and setters
+    - Maybe toString(), equals(), hashCode()
 
 👉 Purpose:
 Used to represent a simple object with properties. They are flexible and can contain business logic too
@@ -261,12 +264,12 @@ Reduce number of method calls, optimize data transfer, and act as a structured d
     public class StudentDTO {
         private final String name;
         private final int age;
-    
+
         public StudentDTO(String name, int age) {
             this.name = name;
             this.age = age;
         }
-    
+
         public String getName() { return name; }
         public int getAge() { return age; }
     }
@@ -278,29 +281,33 @@ A record in Java is a special kind of class introduced in Java 14 (preview) and 
 It is designed to be a concise way of creating immutable data carriers — classes that are mainly used to hold data without needing boilerplate code.
 
 A record is a transparent, immutable data carrier class in Java that automatically provides:
+
 - A constructor
 - Accessor methods for its fields
 - Implementations of equals(), hashCode(), and toString()
 
-```
+```java
     public record ClassName(type field1, type field2, ...) {}
 ```
 
 ### Key Properties of Records
 
 - Immutable
-  - All fields are implicitly private final.
-  - Values cannot be changed after creation.
+
+    - All fields are implicitly private final.
+    - Values cannot be changed after creation.
 
 - Concise
-  - Removes boilerplate code for simple data classes.
+
+    - Removes boilerplate code for simple data classes.
 
 - Transparent
-  - Auto-generated methods (toString, equals, hashCode) reflect the fields directly.
+
+    - Auto-generated methods (toString, equals, hashCode) reflect the fields directly.
 
 - Accessors (not Getters)
-  - Access methods use the field name itself, not getFieldName().
-  - Example: student.name() instead of student.getName().
+    - Access methods use the field name itself, not getFieldName().
+    - Example: student.name() instead of student.getName().
 
 ### Limitations of Records
 
@@ -308,30 +315,30 @@ A record is a transparent, immutable data carrier class in Java that automatical
 - Cannot extend other classes
 - Cannot declare additional instance variables outside the record header
 - Not suitable for:
-  - Mutable entities
-  - Complex lifecycle management
-  - Entities needing inheritance
+    - Mutable entities
+    - Complex lifecycle management
+    - Entities needing inheritance
 
-###  When to Use Records
+### When to Use Records
 
 - ✅ Use when:
-  - Modeling simple, immutable data (DTOs, configs, API responses).
-  - You want cleaner, boilerplate-free code.
+
+    - Modeling simple, immutable data (DTOs, configs, API responses).
+    - You want cleaner, boilerplate-free code.
 
 - ❌ Avoid when:
-  - You need mutable fields.
-  - You require inheritance.
-  - You need complex logic tied to the object’s lifecycle.
+    - You need mutable fields.
+    - You require inheritance.
+    - You need complex logic tied to the object’s lifecycle.
 
-### Comparison 
+### Comparison
 
 | Feature     | POJO                           | DTO                                            | Record                             |
-|-------------|--------------------------------|------------------------------------------------|------------------------------------|
+| ----------- | ------------------------------ | ---------------------------------------------- | ---------------------------------- |
 | Definition  | Any simple Java object         | A POJO used specifically for transferring data | Java 16+ feature to simplify DTOs  |
 | Fields      | mutable or immutable           | usually immutable                              | always immutable (`final`)         |
 | Logic       | may contain business logic     | should contain **no business logic**           | minimal logic (validation allowed) |
 | Boilerplate | requires getters/setters, etc. | requires getters                               | auto-generated                     |
-
 
 ## Sealed Classes
 
@@ -349,9 +356,9 @@ A record is a transparent, immutable data carrier class in Java that automatical
 #### Declaring a Sealed Class
 
 ```java
-public sealed class Vehicle permits Car, Bike {
-    // common code
-}
+    public sealed class Vehicle permits Car, Bike {
+        // common code
+    }
 ```
 
 - `sealed` keyword marks the class as restricted.
@@ -364,13 +371,13 @@ public sealed class Vehicle permits Car, Bike {
 - `non-sealed` → open for unrestricted subclassing
 
 ```java
-public final class Car extends Vehicle {
-    // Car cannot be extended
-}
-
-public non-sealed class Bike extends Vehicle {
-    // Bike can be freely extended
-}
+    public final class Car extends Vehicle {
+        // Car cannot be extended
+    }
+    
+    public non-sealed class Bike extends Vehicle {
+        // Bike can be freely extended
+    }
 ```
 
 ### Uses of Sealed Classes
