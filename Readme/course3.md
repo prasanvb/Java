@@ -124,6 +124,15 @@ h2.playMusicalInstruments(); // ❌ Cannot resolve method 'playMusicalInstrument
 - **Default methods** (Java 8+) allow interfaces to evolve without breaking existing code.
     - **NOTE:** If multiple interfaces have the same `default` method → must override to resolve ambiguity.
 
+## Difference Between Class, Interface, and Abstract Class
+
+| Feature                      | Normal Class | Interface                                | Abstract Class |
+|------------------------------|--------------|------------------------------------------|----------------|
+| Can have variables           | ✅            | ❌ (only constants unless `static final`) | ✅              |
+| Can have implemented methods | ✅            | ✅ (since Java 8 with `default`)          | ✅              |
+| Can have abstract methods    | ❌            | ✅                                        | ✅              |
+| Object creation allowed      | ✅            | ❌                                        | ❌              |
+
 ## Interface vs Abstract
 
 | Feature              | **Interface**                                                                                                                                                                       | **Abstract Class**                                                                                                                                  |
@@ -134,3 +143,33 @@ h2.playMusicalInstruments(); // ❌ Cannot resolve method 'playMusicalInstrument
 | **Inheritance**      | - A class can **implement multiple interfaces**.<br>- An interface can **extend multiple interfaces**.                                                                              | - A class can **extend only one abstract class** (single inheritance).                                                                              |
 | **Access Modifiers** | - Methods are implicitly `public`.<br>- Cannot use `protected` or `private` (except for Java 9+ private helper methods).                                                            | - Methods and variables can have any access modifier (`public`, `protected`, `private`).                                                            |
 | **When to Use**      | - To define a **contract/ability** for unrelated classes (e.g., `Comparable`, `Serializable`).<br>- When you want **multiple inheritance of type**.                                 | - To share **common state + behavior** among related classes.<br>- When you want **code reuse** with partial implementation.                        |
+
+
+## Abstract class
+
+### What is an Abstract Class?
+
+- It is declared using the `abstract` keyword.
+- It acts as a **partial blueprint** for other classes:
+    - Can contain **abstract methods** (methods without implementation).
+    - Can contain **concrete methods** (methods with implementation).
+- An **abstract class** in Java is a class that **cannot be instantiated** (i.e., you cannot create objects of it directly).
+    - You have to inherit (i.e. extend) an abstract class and then you can instantiate the subclass
+- Abstract means “incomplete”
+    - An abstract class may have abstract methods (methods without a body). Because these methods don’t have implementations, Java cannot create a complete object from the abstract class — it doesn’t know how those methods should behave.
+- Constructors in Abstract Classes
+    - Abstract classes can have constructors. These constructors are not for creating abstract objects, but for initializing common state when a concrete subclass is instantiated.
+
+### Key Properties of Abstract Classes
+
+- If a class has **at least one abstract method**, it must be declared as `abstract`.
+- Abstract classes can contain:
+    - **Fields** (variables).
+    - **Constructors** (though you can’t instantiate it, constructors can be used by subclasses).
+    - **Concrete methods** (fully implemented).
+    - **Abstract methods** (must be implemented by subclasses, unless the subclass is also abstract).
+- A subclass must:
+    - **Implement all abstract methods** of its abstract superclass, OR
+    - Be declared `abstract` itself.
+- Abstract classes are widely used in frameworks and base class hierarchies to enforce a **common contract + shared functionality**.
+
