@@ -2,7 +2,7 @@ package course3.L4_Abstract;
 
 public class L4_Abstract {
     public static void main(String[] args) {
-        // ✅ Refence type is abstract class, object is of subclass
+        // 🚧 Refence type is abstract class, object is of subclass
         // Animal a = new Animal("Generic"); // ❌ ERROR: cannot instantiate abstract class
         Animal d = new Dog("Rocky");         // ✅ Works
         d.eat();
