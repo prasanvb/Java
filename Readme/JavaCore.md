@@ -52,3 +52,11 @@ stateDiagram-v2
     - Needed by developers to write and build Java code.
     - Different editions exist: Java SE, Java EE (Jakarta EE), Java ME.
     - JRE + development tools = everything for writing and running Java.
+
+## Java
+
+Four pillars of **Object-Oriented Programming (OOP)** 
+- Encapsulation
+- Inheritance 
+- Polymorphism
+- Abstraction

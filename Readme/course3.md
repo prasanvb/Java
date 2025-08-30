@@ -121,8 +121,6 @@
 | **When to Use**      | - To define a **contract/ability** for unrelated classes (e.g., `Comparable`, `Serializable`).<br>- When you want **multiple inheritance of type**.                                 | - To share **common state + behavior** among related classes.<br>- When you want **code reuse** with partial implementation.                        |
 
 
-
-
 ## Polymorphism
 
 ### What is Polymorphism?
@@ -178,10 +176,7 @@ h2.playMusicalInstruments(); // ❌ Cannot resolve method 'playMusicalInstrument
 
 ## Lesson 5: Encapsulation
 
-### 🔹 What is Encapsulation?
-
-Encapsulation is one of the four pillars of **Object-Oriented
-Programming (OOP)** (others: Inheritance, Polymorphism, Abstraction).
+### What is Encapsulation?
 
 👉 Definition:
 Encapsulation is the practice of **hiding the internal details (data/variables)** of a class and providing controlled access to them using **methods (getters & setters)**.
@@ -190,14 +185,14 @@ Encapsulation is the practice of **hiding the internal details (data/variables)*
 - **Expose only required details** → Provide public methods to
   interact.
 
-## 🔹 Why Encapsulation?
+## Why Encapsulation?
 
 - Protects data from unintended modification and provides controlled access.
 - Adds **flexibility** and improves **maintainability** (future-proof code).
 - Allows **read-only / write-only** access.
 - Enables **validation logic** inside setters.
 
-## 🔹 Key Takeaways
+## Key Takeaways
 
 1. Declare **variables as `private`** and provide **public methods** to access them.
 2. Provide **public getter and setter methods** to enforce rules (validation, read-only/write-only) and access them.
