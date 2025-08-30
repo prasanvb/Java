@@ -173,7 +173,6 @@ h2.playMusicalInstruments(); // ❌ Cannot resolve method 'playMusicalInstrument
 - **Flexibility:** Easy to extend systems by adding new subclasses without changing existing logic.
 - **Cleaner Code:** You don't need separate methods for each subclass — you rely on the parent type.
 
-
 ## Lesson 5: Encapsulation
 
 ### What is Encapsulation?
@@ -185,14 +184,114 @@ Encapsulation is the practice of **hiding the internal details (data/variables)*
 - **Expose only required details** → Provide public methods to
   interact.
 
-## Why Encapsulation?
+### Why Encapsulation?
 
 - Protects data from unintended modification and provides controlled access.
 - Adds **flexibility** and improves **maintainability** (future-proof code).
 - Allows **read-only / write-only** access.
 - Enables **validation logic** inside setters.
 
-## Key Takeaways
+### Key Takeaways
 
 1. Declare **variables as `private`** and provide **public methods** to access them.
 2. Provide **public getter and setter methods** to enforce rules (validation, read-only/write-only) and access them.
+
+
+## Lesson 6: Records
+
+### POJOs
+
+- Stands for Plain Old Java Object.
+- Any simple Java object not bound by any special restriction.
+- Usually contains:
+  - Fields (private variables) mutable or immutable
+  - Getters and setters
+  - Maybe toString(), equals(), hashCode()
+
+👉 Purpose:
+Used to represent a simple object with properties. They are flexible and can contain business logic too
+
+### DTOs
+
+- Stands for Data Transfer Object.
+- A specialized type of POJO used to transfer data between layers (e.g., from API to service, or DB to frontend).
+- Main difference from a POJO → DTOs are intended to be simple carriers of data only, with no business logic.
+- Usually fields immutable (fields are final + NO setters).
+
+👉 Purpose:
+Reduce number of method calls, optimize data transfer, and act as a structured data container.
+
+```java
+    public class StudentDTO {
+        private final String name;
+        private final int age;
+    
+        public StudentDTO(String name, int age) {
+            this.name = name;
+            this.age = age;
+        }
+    
+        public String getName() { return name; }
+        public int getAge() { return age; }
+    }
+```
+
+### Records
+
+A record in Java is a special kind of class introduced in Java 14 (preview) and made permanent in Java 16.
+It is designed to be a concise way of creating immutable data carriers — classes that are mainly used to hold data without needing boilerplate code.
+
+A record is a transparent, immutable data carrier class in Java that automatically provides:
+- A constructor
+- Accessor methods for its fields
+- Implementations of equals(), hashCode(), and toString()
+
+```
+    public record ClassName(type field1, type field2, ...) {}
+```
+
+### Key Properties of Records
+
+- Immutable
+  - All fields are implicitly private final.
+  - Values cannot be changed after creation.
+
+- Concise
+  - Removes boilerplate code for simple data classes.
+
+- Transparent
+  - Auto-generated methods (toString, equals, hashCode) reflect the fields directly.
+
+- Accessors (not Getters)
+  - Access methods use the field name itself, not getFieldName().
+  - Example: student.name() instead of student.getName().
+
+### Limitations of Records
+
+- Fields are always private final → immutable only
+- Cannot extend other classes
+- Cannot declare additional instance variables outside the record header
+- Not suitable for:
+  - Mutable entities
+  - Complex lifecycle management
+  - Entities needing inheritance
+
+###  When to Use Records
+
+- ✅ Use when:
+  - Modeling simple, immutable data (DTOs, configs, API responses).
+  - You want cleaner, boilerplate-free code.
+
+- ❌ Avoid when:
+  - You need mutable fields.
+  - You require inheritance.
+  - You need complex logic tied to the object’s lifecycle.
+
+### Comparison 
+
+| Feature     | POJO                           | DTO                                            | Record                             |
+|-------------|--------------------------------|------------------------------------------------|------------------------------------|
+| Definition  | Any simple Java object         | A POJO used specifically for transferring data | Java 16+ feature to simplify DTOs  |
+| Fields      | mutable or immutable           | usually immutable                              | always immutable (`final`)         |
+| Logic       | may contain business logic     | should contain **no business logic**           | minimal logic (validation allowed) |
+| Boilerplate | requires getters/setters, etc. | requires getters                               | auto-generated                     |
