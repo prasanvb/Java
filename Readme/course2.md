@@ -1,14 +1,14 @@
 # Java Objects, Constructors, Static
 
-## Method Structure & Parameters
+## Lesson 1: Method Structure & Parameters
 
 - A method in Java is a block of code designed to perform a specific task.
 
-```text
-modifier returnType methodName(parameters) {
-    // method body (logic)
-    return value; // optional
-}
+```java
+    modifier returnType methodName(parameters) {
+      // method body (logic)
+      return value; // optional
+    }
 ```
 
 ### Key Points
@@ -20,56 +20,58 @@ modifier returnType methodName(parameters) {
 - Method parameters act like local variables (scope is only inside the method).
 - Method can accept at most 255 parameters
 
-## Types of Modifiers
+### Types of Modifiers
 
-### Access Modifiers
+#### Access Modifiers
 
 - `public`: Accessible from anywhere.
 - `private`: Accessible only inside the same class.
 - `protected`: Accessible within the same package + subclasses in other packages.
 - **default** (no modifier): Accessible only within the same package.
 
-### Non-Access Modifiers
+#### Non-Access Modifiers
 
 - `final`: Method cannot be overridden in subclasses.
 - `static`: Belongs to the class, not an object. Can be called without object creation.
 - `abstract`: Method without a body; subclasses must implement it.
-  - Abstract Method must be declared inside an abstract class, and the class cannot be instantiated.
+    - Abstract Method must be declared inside an abstract class, and the class cannot be instantiated.
 - `synchronized`: Only one thread can access this method at a time (multi-threading).
 - `strictfp`: Ensures consistent floating-point calculations across platforms.
 - `native`: Indicates the method is implemented in another language (like C/C++ via JNI).
 
-
-## Instanceof (Java 16)
+## Lesson 2: Instanceof (Java 16)
 
 - The instanceof operator is a binary operator in Java.
 - It is used to test whether an object is an instance of a specific class, subclass, or implements an interface and returns a boolean value.
 - Works with: Classes, Subclasses, Interfaces, Arrays
 - `objectReference instanceof ClassName`
-  - objectReference → the object being checked.
-  - ClassName → the target class or interface.
+    - objectReference → the object being checked.
+    - ClassName → the target class or interface.
 - If object is null, `instanceof` always returns `false`.
 - Compiler checks if the reference type and target type are related. If unrelated, you get a compile-time error.
-    ```text
+
+```java
     String s = "hello";
     System.out.println(s instanceof Integer); // ❌ compile error
-    ```
+```
 
-## Pattern Matching for instanceof
+### Pattern Matching for instanceof
 
 - Type check + variable binding in a single expression.
 - Compiler handles the cast safely.
 - Syntax
-    ```text
-    if (object instanceof Type variableName) {
-        // variableName is usable here
-    }
-    ```
-    - `object` → expression being tested.
-    - `Type` → target class/interface.
-    - `variableName` → casted object (only exists inside block).
 
-## Enhanced Switch Expressions (Java 17)
+```java
+    if (object instanceof Type variableName) {
+      // variableName is usable here
+    }
+```
+
+- `object` → expression being tested.
+- `Type` → target class/interface.
+- `variableName` → casted object (only exists inside block).
+
+## Lesson 3: Enhanced Switch Expressions (Java 17)
 
 - No break statements required.
 - More concise and readable.
@@ -79,7 +81,7 @@ modifier returnType methodName(parameters) {
 - Block Syntax with yield. Useful for multi-line logic in a case.
 - Improves readability and reduces repetition.
 
-## Constructors in-depth
+## Lesson 4: Constructors in-depth
 
 - **Default Constructor**: If **no constructor** is declared in a class, the Java compiler automatically generates a **no-argument default constructor**, which calls `super()` and leaves fields with default values (e.g., `null` for objects, `0` for numbers)
 - **Default Constructor Behavior**: Java creates a default no-arg constructor only if none is defined. If you define one (even a no-arg one), the compiler does not generate any additional default constructor.
@@ -92,21 +94,22 @@ modifier returnType methodName(parameters) {
 - **Calling Constructors**: Within a class, you can only invoke other constructors using `this(...)` or call superclass constructors via `super(...)`.
 - **All Classes Have Constructors**: Abstract classes can have constructors, but **interfaces cannot**.
 - **Instance Members Not Accessible Before Super**: You cannot refer to instance methods or variables before the superclass constructor completes.
-- **Superclass Default Constructor Requirement**: If the superclass lacks a no-arg constructor, your subclass must explicitly call `super(...)` with appropriate arguments, or compilation fails. 
+- **Superclass Default Constructor Requirement**: If the superclass lacks a no-arg constructor, your subclass must explicitly call `super(...)` with appropriate arguments, or compilation fails.
 
-## Access Modifiers for Constructors
+### Access Modifiers for Constructors
 
 - **`public` Constructor**: Accessible from anywhere (given class is visible).
 - **`protected` Constructor**: Accessible within the same package or from subclasses in other packages.
 - **Default (package-private)**: Accessible only within the same package.
 - **`private` Constructor**: Accessible only within its own class.
 
-## Use Cases for `private` Constructors
+## Lesson 5: Use Cases for `private` Constructors
 
 ### Singleton Design Pattern
 
 **Goal**: Ensure that a class has only **one instance** in the entire JVM.
 **Why use private constructor?**
+
 - To prevent external instantiation (`new` keyword).
 - Instance creation is controlled internally via a static method.
   **Example**: Database connection manager, logging system.
@@ -115,68 +118,73 @@ modifier returnType methodName(parameters) {
 
 **Goal**: Contain only **static methods or constants**.
 **Why use private constructor?**
+
 - Prevents creation of unnecessary objects (no sense in creating an instance for static methods).
-**Examples**: `java.lang.Math`, `java.util.Collections`.
+  **Examples**: `java.lang.Math`, `java.util.Collections`.
 
-```text
-public class MathUtils {
-    // Prevent instantiation
-    private MathUtils() { }
-
-    public static int square(int n) {
-        return n * n;
+```java
+    public class MathUtils {
+      // Prevent instantiation
+      private MathUtils() { }
+    
+      public static int square(int n) {
+          return n * n;
+      }
     }
-}
-
-// Usage
-int result = MathUtils.square(5); // No object needed
+    
+    // Usage
+    int result = MathUtils.square(5); // No object needed
 ```
 
 ### **Immutable Classes with Factory Methods**
 
 **Goal**: Provide **controlled instance creation** through static factory methods.
 **Why use private constructor?**
+
 - Forces developers to use factory methods (`of`, `valueOf`, `getInstance`, etc.).
 
-```text
-public class Color {
-    private String name;
-
-    // Private constructor
-    private Color(String name) {
-        this.name = name;
+```java
+    public class Color {
+      private String name;
+    
+      // Private constructor
+      private Color(String name) {
+          this.name = name;
+      }
+    
+      // Factory methods
+      public static Color red()   { return new Color("Red"); }
+      public static Color blue()  { return new Color("Blue"); }
     }
-
-    // Factory methods
-    public static Color red()   { return new Color("Red"); }
-    public static Color blue()  { return new Color("Blue"); }
-}
 ```
 
 ### **Restricting Inheritance**
 
 **Goal**: Prevent subclassing of a class.
 **Why use private constructor?**
+
 - If all constructors are private, no subclass can extend it because the superclass constructor cannot be called.
 - Often combined with `final` modifier.
-**Example**: Useful in constants-only classes.
+  **Example**: Useful in constants-only classes.
 
-```text
-public final class Constants {
-    public static final String APP_NAME = "MyApp";
-
-    // Prevent inheritance & instantiation
-    private Constants() { }
-}
+```java
+    public final class Constants {
+      public static final String APP_NAME = "MyApp";
+    
+      // Prevent inheritance & instantiation
+      private Constants() { }
+    }
 ```
 
-## Static
+## Lesson 6: Static
 
 ### What is static in Java?
+
 - static is a non-access modifier in Java.
 - It can be applied to: Variables, Methods, Blocks, Nested Classes
 
 Key Rule:
+
 - Static members belong to the class itself, not to instances (objects).
 - They are created when the class is loaded, even before any object is created and shared across all objects of the class.
 
@@ -187,13 +195,14 @@ Key Rule:
 
 ### Static Methods
 
-- Declared with static keyword. 
+- Declared with static keyword.
 - Belong to the class, not to an object.
 - Cannot access instance variables or instance methods directly because they don’t depend on objects.
-- Accessed directly using class name. 
-  - Example: Math.random(), Math.PI.
+- Accessed directly using class name.
+    - Example: Math.random(), Math.PI.
 
 ### Why is main() static?
+
 JVM needs to call it without creating an object. If main were not static, JVM would face ambiguity (which constructor to use?).
 
 ### Static Blocks
@@ -203,11 +212,11 @@ JVM needs to call it without creating an object. If main were not static, JVM wo
 - If multiple static blocks exist, they execute in order of declaration.
 
 ### Static Nested Classes
+
 - A class defined inside another class can be marked static.
 - Static nested class:
-  - Can be instantiated without creating an object of the outer class.
-  - Can access only static members of the outer class.
+    - Can be instantiated without creating an object of the outer class.
+    - Can access only static members of the outer class.
 - Non-static inner class:
-  - Requires an instance of the outer class.
-  - Can access both static and non-static members of outer class.
-  - 
+    - Requires an instance of the outer class.
+    - Can access both static and non-static members of outer class.

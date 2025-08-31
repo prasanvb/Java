@@ -1,11 +1,8 @@
-package course2.package1;
+package course2.L4_Constructors;
 
-import course2.package2.L4_PersonSuper;
-
-public class L4_Constructors extends L4_PersonSuper {
+public class L4_Constructors extends PersonSuper {
     private String name;
     private int age;
-    private String gender;
 
     // Default constructor
     public L4_Constructors() {
@@ -28,7 +25,6 @@ public class L4_Constructors extends L4_PersonSuper {
         System.out.println("Person parameterized constructor with 3 params");
         this.name = name;
         this.age = age;
-        this.gender = gender;
     }
 
     public static void main(String[] args) {

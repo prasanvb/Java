@@ -5,11 +5,11 @@ public class L3_EnhancedSwitch {
 
         L3_EnhancedSwitch obj1 = new L3_EnhancedSwitch();
 
-        System.out.println("Enhanced switch case - multiline return: "+obj1.multiLineExample());
+        System.out.println("Enhanced switch case - multiline return: " + obj1.multiLineExample());
 
         EnumExample example2 = new EnumExample(Day.SATURDAY);
 
-        System.out.println("Enhanced switch case - enum: "+example2.getActivity());
+        System.out.println("Enhanced switch case - enum: " + example2.getActivity());
 
     }
 
@@ -29,7 +29,7 @@ public class L3_EnhancedSwitch {
     }
 }
 
-enum Day { MONDAY, TUESDAY, WEDNESSDAY, THRUSDAY, FRIDAY, SATURDAY }
+enum Day {MONDAY, TUESDAY, WEDNESSDAY, THRUSDAY, FRIDAY, SATURDAY}
 
 class EnumExample {
     Day today;
@@ -38,7 +38,7 @@ class EnumExample {
         this.today = today;
     }
 
-    public String getActivity(){
+    public String getActivity() {
 
         return switch (today) {
             case MONDAY, TUESDAY, WEDNESSDAY, THRUSDAY -> "Work";

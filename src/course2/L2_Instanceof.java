@@ -43,15 +43,20 @@ public class L2_Instanceof {
 }
 
 // Sealed interface hierarchy example
-sealed interface Shape permits Circle, Rectangle {}
+sealed interface Shape permits Circle, Rectangle {
+}
 
 final class Circle implements Shape {
     double radius;
-    Circle(double radius) { this.radius = radius; }
+
+    Circle(double radius) {
+        this.radius = radius;
+    }
 }
 
 final class Rectangle implements Shape {
     double width, height;
+
     Rectangle(double width, double height) {
         this.width = width;
         this.height = height;

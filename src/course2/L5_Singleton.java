@@ -20,8 +20,8 @@ public class L5_Singleton {
     }
 
     // Example method
-    public void showMessage(String obj ) {
-        System.out.println("Hello from L5_Singleton! "+obj);
+    public void showMessage(String obj) {
+        System.out.println("Hello from L5_Singleton! " + obj);
     }
 
     // Main method to test L5_Singleton

@@ -1,10 +1,12 @@
-# Class & Objects
+# Java Basics
+
+## Class & Objects
 
 - Only one public class per` .java` file, and filename must match public class name.
 - The public class of your source file must have the main method. Only one main method is needed per application.
 - Class name starts with an uppercase letter - is convention not a rule.
 
-## Constructors
+### Constructors
 A constructor in Java is a special method that:
 - Has the exact same name as the class
 - Does not have any return type (not even void)
@@ -49,11 +51,11 @@ examples:
 - `src/course1/package2`
 
 | Modifier    | Same Class | Same Package | Subclass (diff package) | Other Package |
-|-------------| ---------- |--------------| ----------------------- | ------------- |
-| `public`    | ✅         | ✅            | ✅                      | ✅            |
-| `protected` | ✅         | ✅            | ✅                      | ❌            |
-| `default`   | ✅         | ✅            | ❌                      | ❌            |
-| `private`   | ✅         | ❌            | ❌                      | ❌            |
+|-------------|------------|--------------|-------------------------|---------------|
+| `public`    | ✅          | ✅            | ✅                       | ✅             |
+| `protected` | ✅          | ✅            | ✅                       | ❌             |
+| `default`   | ✅          | ✅            | ❌                       | ❌             |
+| `private`   | ✅          | ❌            | ❌                       | ❌             |
 
 ## Java Variables
 
@@ -89,7 +91,6 @@ example: `src/course1/L3_Variables.java`
 **Reference variable:**
 - Type must match the object type (e.g., `Person p = new Person();`)
 - Superclass references can point to subclass objects (e.g., `Animal a = new Cat();`)
-
 
 ## Default Values for Variables
 
@@ -140,7 +141,7 @@ example: `src/course1/L3_Variables.java`
 ### Double Literals
 - Add `D` or `d` (optional)
 
-## Type Casting
+## Lesson 6: Type Casting
 
 - Implicit casting (widening conversion): Smaller type automatically converted to larger type.
     - Example: `int → long`
@@ -150,7 +151,7 @@ example: `src/course1/L3_Variables.java`
 
 - Special case with byte: Compile-time constant expressions can fit without error, but runtime expressions require explicit casting.
 
-## Scope of Variables
+## Lesson 7: Scope of Variables
 
 In Java, the **scope** of a variable defines *where* in the code it can be accessed, and its **lifetime** defines *how long* it exists in memory.
 
@@ -180,7 +181,7 @@ In Java, the **scope** of a variable defines *where* in the code it can be acces
 - **Scope**: not visible outside the block.
 - Inner variables can shadow outer ones with the same name.
 
-## Modifiers for Variables
+### Modifiers for Variables
 
 ### Additional  Modifiers (instance or static)
 - final: must be assigned once, cannot be changed later (similar to constants in JS)
@@ -195,7 +196,7 @@ In Java, the **scope** of a variable defines *where* in the code it can be acces
 - Can use only final (or be effectively final).
 - Cannot use: public, private, protected, static, transient, volatile.
 
-## Wrapper Class
+## Lesson 9: Wrapper Class
 
 - In Java, **primitives** (`int`, `boolean`, `double`, etc.) are not objects.
 - For every primitive, there exists a corresponding **Wrapper Class** in `java.lang`.
@@ -213,7 +214,7 @@ In Java, the **scope** of a variable defines *where* in the code it can be acces
 - **Autoboxing / Unboxing** → Automatic conversion introduced in Java 5.
 - Wrapper classes provide **utility methods** (e.g., `Integer.parseInt("123")`, `Integer.toString(10)`).
 
-## Array
+## Lesson 10: Array
 
 - **Array = special object in Java** that can store multiple values of the **same type**.
 - Declared with `<Type>[]`.
