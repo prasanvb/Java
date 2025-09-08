@@ -116,7 +116,7 @@ In Java, polymorphism means a single interface (method signature) can represent 
             // Musician sing
         }
 
-        public static void main(String[] args){
+        static void main(String[] args){
             Human h1 = new Artist();   // Reference = Human, Object = Artist
             Human h2 = new Musician(); // Reference = Human, Object = Musician
 
@@ -287,7 +287,7 @@ A record is a transparent, immutable data carrier class in Java that automatical
 - Implementations of equals(), hashCode(), and toString()
 
 ```java
-    public record ClassName(type field1, type field2, ...) {}
+    public record ClassName(type field1, type field2) {}
 ```
 
 ### Key Properties of Records

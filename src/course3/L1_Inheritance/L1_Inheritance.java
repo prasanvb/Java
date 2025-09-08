@@ -1,17 +1,75 @@
 package course3.L1_Inheritance;
 
+import java.util.Objects;
+
 class Human {
+    public static final String WILL_SPEAK_NORMAL = " will speak normal";
     String name;
     int age;
     String gender;
 
+    @Override
+    public boolean equals(Object o) {
+        if (!(o instanceof Human human)) return false;
+        return getAge() == human.getAge() && Objects.equals(getName(), human.getName()) && Objects.equals(getGender(), human.getGender());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getName(), getAge(), getGender());
+    }
+
+    @Override
+    public String toString() {
+        return "Human{" +
+                "name='" + name + '\'' +
+                ", age=" + age +
+                ", gender='" + gender + '\'' +
+                '}';
+    }
+
+    public Human() {
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public int getAge() {
+        return age;
+    }
+
+    public void setAge(int age) {
+        this.age = age;
+    }
+
+    public String getGender() {
+        return gender;
+    }
+
+    public void setGender(String gender) {
+        this.gender = gender;
+    }
+
     // Common methods for all humans
     public void walk() {
-        System.out.println(name + " will walk normal");
+        String sample = getSample();
+        if (true) {
+            System.out.println(getName() + sample);
+        }
+    }
+
+    private static String getSample() {
+        String sample = " will walk normal";
+        return sample;
     }
 
     public void speak() {
-        System.out.println(name + " will speak normal");
+        System.out.println(getName() + WILL_SPEAK_NORMAL);
     }
 }
 
@@ -95,6 +153,7 @@ public class L1_Inheritance {
 
         // Reference Type Human, Object Artist
         Human h1 = new Artist();
+        System.out.println(h1.toString());;
         h1.walk();            // calls Human's walk
         // h1.Painting();     // ❌ Cannot resolve method in 'Human'
 
