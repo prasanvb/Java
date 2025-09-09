@@ -341,7 +341,8 @@ Each Node contains two parts:
 
 ```mermaid
 graph LR
-    A[Node 1] --> B[Node 2]
+    A[Node 1] 
+    A --> B[Node 2]
     B --> C[Node 3]
     C --> D[null]
 
@@ -351,34 +352,29 @@ graph LR
     end
 ```
 
-### LinkedList Operations
-
-#### Adding Elements
-
-**Adding at End (Default):**
+### LinkedList Methods
 
 ```java
-// Initial: [5] -> null
-linkedList.add(10);  // [5] -> [10] -> null
-linkedList.add(15);  // [5] -> [10] -> [15] -> null
-```
+LinkedList<String> list = new LinkedList<>();
 
-**Adding at Beginning:**
+// Head and Tail operations
+list.addFirst("First");        // Add at beginning
+list.addLast("Last");          // Add at end (same as add())
+list.getFirst();               // Get first element
+list.getLast();                // Get last element
+list.removeFirst();            // Remove first element
+list.removeLast();             // Remove last element
 
-```java
-// Before: [5] -> [10] -> null
-linkedList.addFirst(1);  // [1] -> [5] -> [10] -> null
-// New node becomes head, old head becomes second
-```
+// Peek operations (don't remove elements)
+list.peekFirst();              // Get first without removing
+list.peekLast();               // Get last without removing
 
-#### Deleting Elements
+// Poll operations (remove and return)
+list.pollFirst();              // Remove and return first
+list.pollLast();               // Remove and return last
 
-**Deleting First Element:**
-
-```java
-// Before: [1] -> [5] -> [10] -> null
-linkedList.removeFirst();  // [5] -> [10] -> null
-// Second node becomes new head
+list.remove();                 // Removes first element
+list.remove("A");              // Removes specified element
 ```
 
 ### Singly vs Doubly LinkedList
@@ -389,7 +385,7 @@ linkedList.removeFirst();  // [5] -> [10] -> null
 - **Direction**: Can only traverse forward
 - **Structure**: Data -> Next
 
-#### Doubly LinkedList (Java's LinkedList implementation)
+#### Doubly LinkedList
 
 - **Three parts per node**: Previous reference + Data + Next reference
 - **Direction**: Can traverse both forward and backward
@@ -411,96 +407,11 @@ graph LR
 ### Performance Comparison: ArrayList vs LinkedList
 
 | Operation                                 | ArrayList                        | LinkedList                     |
-| ----------------------------------------- | -------------------------------- | ------------------------------ |
+|-------------------------------------------|----------------------------------|--------------------------------|
 | **Addition/Deletion at beginning/middle** | Slow O(n)                        | Fast O(1)                      |
 | **Search Operations**                     | Fast O(1) random access          | Slow O(n) sequential access    |
 | **Memory Usage**                          | Less overhead                    | More overhead (extra pointers) |
 | **Best Use Case**                         | Frequent searching/random access | Frequent insertion/deletion    |
-
-### LinkedList Code Examples
-
-```java
-import java.util.LinkedList;
-
-public class LinkedListExample {
-    public static void main(String[] args) {
-        // 1. Creating LinkedList
-        LinkedList<String> myList = new LinkedList<>();
-
-        // 2. Adding elements (same methods as ArrayList)
-        myList.add("C");           // Adds at end
-        myList.add("A");           // Adds at end
-        myList.add("Z");           // Adds at end
-        myList.addFirst("I");      // Adds at beginning (LinkedList specific)
-
-        System.out.println("After adding elements:");
-        printList(myList);
-        // Output: I C A Z
-
-        // 3. Accessing first and last elements (LinkedList specific)
-        System.out.println("First element: " + myList.getFirst());
-        // Output: First element: I
-
-        System.out.println("Last element: " + myList.getLast());
-        // Output: Last element: Z
-
-        // 4. Removing elements
-        myList.remove();           // Removes first element
-        System.out.println("After removing first element:");
-        printList(myList);
-        // Output: C A Z
-
-        myList.remove("A");        // Removes specific element
-        System.out.println("After removing 'A':");
-        printList(myList);
-        // Output: C Z
-
-        // 5. LinkedList specific removal methods
-        myList.addFirst("X");
-        myList.addLast("Y");
-        System.out.println("After adding X at first and Y at last:");
-        printList(myList);
-        // Output: X C Z Y
-
-        myList.removeFirst();      // Remove first element
-        myList.removeLast();       // Remove last element
-        System.out.println("After removing first and last:");
-        printList(myList);
-        // Output: C Z
-    }
-
-    private static void printList(LinkedList<String> list) {
-        for (String element : list) {
-            System.out.print(element + " ");
-        }
-        System.out.println();
-    }
-}
-```
-
-### LinkedList Unique Methods
-
-LinkedList provides additional methods not available in ArrayList:
-
-```java
-LinkedList<String> list = new LinkedList<>();
-
-// Head and Tail operations
-list.addFirst("First");        // Add at beginning
-list.addLast("Last");          // Add at end (same as add())
-list.getFirst();               // Get first element
-list.getLast();                // Get last element
-list.removeFirst();            // Remove first element
-list.removeLast();             // Remove last element
-
-// Peek operations (don't remove elements)
-list.peekFirst();              // Get first without removing
-list.peekLast();               // Get last without removing
-
-// Poll operations (remove and return)
-list.pollFirst();              // Remove and return first
-list.pollLast();               // Remove and return last
-```
 
 ---
 
