@@ -231,6 +231,8 @@ Employee emp = employeeMap.get(538); // Direct access, no iteration!
 - Not sorted by default
 - Allows duplicate elements
 - Constructs an empty list with an initial capacity of ten.
+- Need fast random access to elements
+- Perform more read operations than write operations
 
 ### L1:  Basic ArrayList Operations
 
@@ -424,7 +426,7 @@ graph LR
 ### Key Differences from ArrayList
 
 | Feature             | ArrayList          | Vector                          |
-| ------------------- | ------------------ | ------------------------------- |
+|---------------------|--------------------|---------------------------------|
 | **Thread Safety**   | Not synchronized   | Synchronized (thread-safe)      |
 | **Performance**     | Faster             | Slower (due to synchronization) |
 | **Capacity Growth** | Increases by 50%   | Increases by 100% (doubles)     |
@@ -440,47 +442,6 @@ graph LR
 // Initial: 10 -> When full -> 20 (100% increase)
 ```
 
-### Vector Code Examples
-
-```java
-import java.util.Vector;
-
-public class VectorExample {
-    public static void main(String[] args) {
-        // 1. Creating Vector
-        Vector<String> myList = new Vector<>();
-
-        // 2. Adding elements (same as ArrayList)
-        myList.add("A");
-        myList.add("B");
-        myList.add("C");
-
-        // 3. Vector-specific method
-        myList.addElement("D");    // Legacy method, same as add()
-
-        System.out.println("Vector elements:");
-        for (String element : myList) {
-            System.out.print(element + " ");
-        }
-        System.out.println();
-        // Output: A B C D
-
-        // 4. Accessing elements (same as ArrayList)
-        System.out.println("Element at index 1: " + myList.get(1));
-        // Output: Element at index 1: B
-
-        // 5. Vector size and capacity
-        System.out.println("Size: " + myList.size());
-        System.out.println("Capacity: " + myList.capacity());
-        // Output: Size: 4, Capacity: 10
-
-        // 6. Removing elements
-        myList.remove("B");
-        System.out.println("After removing B: " + myList);
-        // Output: After removing B: [A, C, D]
-    }
-}
-```
 
 ### Thread Safety Example
 
@@ -499,21 +460,7 @@ arrayList.add("Not Thread Safe");
 List<String> synchronizedList = Collections.synchronizedList(new ArrayList<>());
 ```
 
-### When to Use Vector
-
-**Use Vector when:**
-
-- Working with legacy code that requires Vector
-- Need built-in thread safety
-- Working in multi-threaded environment with simple synchronization needs
-
-**Prefer ArrayList when:**
-
-- Single-threaded applications
-- Performance is critical
-- Modern Java development practices
-
-**Alternative for thread safety:**
+**Alternative for Vector:**
 
 ```java
 // Better approach for thread safety
@@ -525,12 +472,10 @@ List<String> concurrentList = new CopyOnWriteArrayList<>();
 
 ---
 
-## Summary of List Implementations
-
 ### Comparison Table
 
 | Feature                          | ArrayList                | LinkedList                  | Vector                     |
-| -------------------------------- | ------------------------ | --------------------------- | -------------------------- |
+|----------------------------------|--------------------------|-----------------------------|----------------------------|
 | **Internal Structure**           | Dynamic Array            | Doubly Linked Nodes         | Dynamic Array              |
 | **Random Access**                | O(1)                     | O(n)                        | O(1)                       |
 | **Insertion/Deletion at middle** | O(n)                     | O(1)                        | O(n)                       |
@@ -538,33 +483,3 @@ List<String> concurrentList = new CopyOnWriteArrayList<>();
 | **Thread Safety**                | No                       | No                          | Yes                        |
 | **Performance**                  | High                     | Medium                      | Low                        |
 | **Best Use Case**                | Random access, searching | Frequent insertion/deletion | Legacy code, thread safety |
-
-### Choosing the Right List Implementation
-
-**Use ArrayList when:**
-
-- Need fast random access to elements
-- Perform more read operations than write operations
-- Memory efficiency is important
-- Single-threaded environment
-
-**Use LinkedList when:**
-
-- Frequent insertion/deletion operations, especially at beginning/middle
-- Don't need random access to elements
-- Implementing queue or deque operations
-
-**Use Vector when:**
-
-- Working with legacy code
-- Need simple thread safety
-- Compatibility with old Java versions required
-
-### Best Practices
-
-1. **Default Choice**: Use ArrayList for most use cases
-2. **Performance Critical**: Profile your application to choose the best implementation
-3. **Thread Safety**: Use `Collections.synchronizedList()` or concurrent collections instead of Vector
-4. **Memory Sensitive**: Consider the memory overhead of LinkedList's node structure
-5. **Interface Programming**: Declare variables as `List<T>` instead of specific implementation types
-
