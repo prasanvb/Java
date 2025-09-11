@@ -1,9 +1,9 @@
-package course5.ComparableSort_L3;
+package course5.CollectionSort;
 
 import java.util.ArrayList;
 import java.util.Collections;
 
-public class ComparableSort {
+public class ComparableSort_L3 {
     public static void main(String[] args) {
         ArrayList<Person> people = new ArrayList<>();
 

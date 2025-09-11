@@ -213,122 +213,7 @@ Employee emp = employeeMap.get(538); // Direct access, no iteration!
 
 ---
 
-## ArrayList Implementation
-
-**ArrayList** is similar to arrays but with dynamic sizing capabilities:
-
-**Differences from Arrays:**
-
-- **Arrays**: Fixed length after declaration
-- **ArrayList**: 
-  - Dynamic growth and shrinkage
-  - Provides predefined utility methods
-  - Fast iteration and random access
-
-**Properties:**
-
-- Ordered collection (by index)
-- Not sorted by default
-- Allows duplicate elements
-- Constructs an empty list with an initial capacity of ten.
-- Need fast random access to elements
-- Perform more read operations than write operations
-
-### L1:  Basic ArrayList Operations
-
-### Generic Type Safety
-
-```java
-// Without generics - allows any type (not recommended)
-ArrayList mixedList = new ArrayList();
-mixedList.add("String");
-mixedList.add(123);
-mixedList.add(new Person("Alex", 25, "Male"));
-
-// With generics - type safe (recommended)
-ArrayList<String> stringList = new ArrayList<>();
-stringList.add("Apple");
-stringList.add("Orange");
-// stringList.add(123); // Compilation error - type safety
-
-
-// Good practice - programming to interface
-List<String> list = new ArrayList<>();  // Easy to change implementation later
-
-// Avoid - tied to specific implementation
-ArrayList<String> list = new ArrayList<>();
-```
-
-### ArrayList Constructors
-
-```java
-// 1. Default constructor (initial capacity 10)
-ArrayList<String> list1 = new ArrayList<>();
-
-// 2. Constructor with initial capacity
-ArrayList<String> list2 = new ArrayList<>(5);
-
-// 3. Constructor with existing collection
-ArrayList<String> existingList = Arrays.asList("A", "B", "C");
-ArrayList<String> list3 = new ArrayList<>(existingList);
-```
-
-### Sorting Collections
-
-#### L2: Sorting Primitive Types
-
-The `Collections.sort()` method can sort collections of objects such as String, Numbers that have natural ordering
-
-#### L3: Sorting Custom Objects
-
-For custom objects, you must implement the `Comparable` interface:
-
-
-#### L4: Advanced Sorting with Comparator
-
-For more complex sorting scenarios, you can use `Comparator`:
-
-### Collection vs Collections vs Collection
-
-**Be careful not to confuse:**
-
-1. **collection** (lowercase): General term for data structure
-2. **Collection** (uppercase, singular): Root interface from java.util package
-    ```java
-    // Collection interface
-    Collection<String> myCollection = new ArrayList<>();
-    ```
-3. **Collections** (uppercase, plural): Utility class from java.util package containing static methods
-    ```java
-    // Collections utility class
-    Collections.sort(myList);          // Static method
-    Collections.reverse(myList);       // Static method
-    ```
-
-### Performance Considerations
-
-| Collection Type | Access Time | Search Time | Insertion Time | Deletion Time |
-|-----------------|-------------|-------------|----------------|---------------|
-| ArrayList       | O(1)        | O(n)        | O(n)           | O(n)          |
-| LinkedList      | O(n)        | O(n)        | O(1)           | O(1)          |
-| HashMap         | O(1)        | O(1)        | O(1)           | O(1)          |
-| TreeMap         | O(log n)    | O(log n)    | O(log n)       | O(log n)      |
-
-### Key Takeaways
-
-1. **Choose the right collection type** based on your use case:
-    - List: For ordered, indexed access
-    - Set: For unique elements
-    - Map: For key-value pairs with fast access
-    - Queue: For FIFO processing
-2. **Consider performance implications** of different implementations
-3. **Use generics** for type safety and avoiding ClassCastException
-4. **Implement Comparable** for custom objects that need natural ordering
-5. **Use Collections utility methods** for common operations like sorting
-
----
-
-## LinkedList Implementation
+## L5:LinkedList Implementation
 
 ### Internal Structure and Design
 
@@ -417,7 +302,7 @@ graph LR
 
 ---
 
-## Vector Implementation
+## L6:Vector Implementation
 
 ### Historical Context and Characteristics
 
@@ -483,3 +368,14 @@ List<String> concurrentList = new CopyOnWriteArrayList<>();
 | **Thread Safety**                | No                       | No                          | Yes                        |
 | **Performance**                  | High                     | Medium                      | Low                        |
 | **Best Use Case**                | Random access, searching | Frequent insertion/deletion | Legacy code, thread safety |
+
+
+
+## Performance Considerations
+
+| Collection Type | Access Time | Search Time | Insertion Time | Deletion Time |
+|-----------------|-------------|-------------|----------------|---------------|
+| ArrayList       | O(1)        | O(n)        | O(n)           | O(n)          |
+| LinkedList      | O(n)        | O(n)        | O(1)           | O(1)          |
+| HashMap         | O(1)        | O(1)        | O(1)           | O(1)          |
+| TreeMap         | O(log n)    | O(log n)    | O(log n)       | O(log n)      |

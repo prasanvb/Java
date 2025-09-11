@@ -1,6 +1,4 @@
-package course5;
-
-import course5.ComparableSort_L3.Person;
+package course5.CollectionSort;
 
 import java.util.ArrayList;
 import java.util.Collections;

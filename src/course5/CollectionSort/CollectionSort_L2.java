@@ -1,4 +1,4 @@
-package course5;
+package course5.CollectionSort;
 
 import java.util.ArrayList;
 import java.util.Collections;
