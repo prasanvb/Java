@@ -86,7 +86,7 @@
 1. **Checked Exceptions** (compile-time) → must be handled explicitly (e.g., `IOException`).
 2. **Unchecked Exceptions** (runtime) → occur due to logical/programming errors (e.g., `NullPointerException`, `ArrayIndexOutOfBoundsException`).
 
-### 🖼️ [Exception Hierarchy](Readme/Diagrams/ExceptionHierarchy.png)
+### 🖼️ [Exception Hierarchy](readme/diagrams/ExceptionHierarchy.png)
 
 ### Handling Exceptions with try-catch
 
