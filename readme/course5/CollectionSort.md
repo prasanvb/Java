@@ -1,15 +1,28 @@
 # Sorting Collections
 
-#### L2: Sorting Primitive Types
+## Parallel Streams
+
+`parallelStream()` method provides a way to process elements of a stream in parallel, 
+leveraging multiple CPU cores to potentially improve performance for large datasets or computationally intensive operations.
+From a Collection: Call the parallelStream() method directly on a Collection (e.g., List, Set):
+
+```declarative
+    List<Integer> myList = new ArrayList<>(1, 2, 3, 4, 5, 6, 7, 8, 9, 10);
+    Stream<Integer> parallelStream = myList.parallelStream();
+```
+
+
+
+## L2: Sorting Primitive Types
 
 The `Collections.sort()` method can sort collections of objects such as String, Numbers that have natural ordering
 
-#### L3: Sorting Custom Objects
+## L3: Sorting Custom Objects
 
 For custom objects, you must implement the `Comparable` interface:
 
 
-#### L4: Advanced Sorting with Comparator
+## L4: Advanced Sorting with Comparator
 
 For more complex sorting scenarios, you can use `Comparator`:
 
