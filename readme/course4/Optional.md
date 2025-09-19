@@ -1,4 +1,4 @@
-# Java Optional Class - Comprehensive Study Notes
+# Java Optional Class
 
 ## 1. Introduction
 
@@ -11,21 +11,11 @@ An `Optional<T>` is a wrapper class that can either:
 
 ## 2. Core Characteristics
 
-### 2.1 Container for a Value
 - An `Optional` instance either holds a non-null value or represents the absence of a value (an "empty" `Optional`)
-- It's a **value-based class**, meaning instances should be treated as immutable
-
-### 2.2 Explicit Signal of Potential Absence
 - When a method returns an `Optional`, it clearly communicates to the caller that the returned value might not be present
-- This forces developers to explicitly handle both presence and absence cases
-
-### 2.3 Reduces NullPointerExceptions
 - By forcing explicit handling of potential absence, `Optional` helps prevent common `NullPointerExceptions`
-- Eliminates direct access to potentially `null` references
-
-### 2.4 Improves Code Readability
-- Makes code more expressive and easier to understand
-- The intent of potentially missing values is clearly stated in method signatures
+  - Eliminates direct access to potentially `null` references
+- Makes code more readable and easier to understand
 
 ## 3. Creating Optional Instances
 
@@ -208,18 +198,6 @@ String value1 = optional.orElse("default");
 String value2 = optional.orElseThrow(() -> new CustomException("Value not found"));
 ```
 
-#### Use Method Chaining
-Always start from an Optional. Apply a chain of filter(), map(), or flatMap() method. Use orElse(), or orElseGet() methods to get unwrap the value.
-
-```java
-// ✅ GOOD - Method chaining
-String result = findUserById(id)
-    .filter(user -> user.isActive())
-    .map(User::getName)
-    .map(String::toUpperCase)
-    .orElse("UNKNOWN");
-```
-
 ### 7.4 Performance Considerations
 - Optional should be used moderately. If we know that a value will always be present, don't wrap it in Optional
 - Use `orElseGet()` instead of `orElse()` when the default value computation is expensive
@@ -232,87 +210,6 @@ String result = optional.orElseGet(() -> expensiveComputation());
 String result = optional.orElse(expensiveComputation());
 ```
 
-## 8. Complete Example with Best Practices
-
-```java
-import java.util.Optional;
-import java.util.List;
-import java.util.Arrays;
-
-public class OptionalBestPracticesExample {
-    
-    // ✅ Good: Using Optional for return type that might be absent
-    public static Optional<User> findUserById(int id) {
-        // Simulate database lookup
-        List<User> users = Arrays.asList(
-            new User(1, "Alice", true),
-            new User(2, "Bob", false)
-        );
-        
-        return users.stream()
-            .filter(user -> user.getId() == id)
-            .findFirst();
-    }
-    
-    // ✅ Good: Method chaining with transformations
-    public static String getUserDisplayName(int id) {
-        return findUserById(id)
-            .filter(User::isActive)           // Only active users
-            .map(User::getName)               // Transform to name
-            .map(name -> "User: " + name)     // Add prefix
-            .orElse("Guest User");            // Default value
-    }
-    
-    // ✅ Good: Using Optional with exception handling
-    public static User getActiveUserById(int id) {
-        return findUserById(id)
-            .filter(User::isActive)
-            .orElseThrow(() -> new UserNotFoundException("Active user not found with id: " + id));
-    }
-    
-    public static void main(String[] args) {
-        // Case 1: User exists and is active
-        System.out.println(getUserDisplayName(1)); // "User: Alice"
-        
-        // Case 2: User exists but is inactive
-        System.out.println(getUserDisplayName(2)); // "Guest User"
-        
-        // Case 3: User doesn't exist
-        System.out.println(getUserDisplayName(3)); // "Guest User"
-        
-        // Case 4: Exception handling
-        try {
-            User user = getActiveUserById(2);
-        } catch (UserNotFoundException e) {
-            System.out.println(e.getMessage()); // "Active user not found with id: 2"
-        }
-    }
-}
-
-// Supporting classes
-class User {
-    private final int id;
-    private final String name;
-    private final boolean active;
-    
-    public User(int id, String name, boolean active) {
-        this.id = id;
-        this.name = name;
-        this.active = active;
-    }
-    
-    // Getters
-    public int getId() { return id; }
-    public String getName() { return name; }
-    public boolean isActive() { return active; }
-}
-
-class UserNotFoundException extends RuntimeException {
-    public UserNotFoundException(String message) {
-        super(message);
-    }
-}
-```
 
 ## 9. Common Pitfalls to Avoid
 
@@ -345,14 +242,3 @@ public class Person {
     }
 }
 ```
-
-## 10. Summary
-
-`Optional` is a powerful tool for writing safer, more expressive Java code. When used correctly, it:
-
-- **Eliminates** most `NullPointerExceptions`
-- **Improves** code readability and intent
-- **Encourages** explicit handling of absent values
-- **Works well** with functional programming styles
-
-Remember: Use `Optional` for return types where absence is a valid state, avoid it in fields and parameters, and always prefer safe extraction methods over `get()`.
