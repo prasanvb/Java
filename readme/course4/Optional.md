@@ -1,5 +1,33 @@
 # Java Optional Class
 
+## Table of Contents
+
+- [1. Introduction](#1-introduction)
+- [2. Core Characteristics](#2-core-characteristics)
+- [3. Creating Optional Instances](#3-creating-optional-instances)
+  - [3.1 Basic Creation Methods](#31-basic-creation-methods)
+  - [3.2 When to Use Each Method](#32-when-to-use-each-method)
+- [4. Core Methods for Handling Presence/Absence](#4-core-methods-for-handling-presenceabsence)
+  - [4.1 Checking for Presence](#41-checking-for-presence)
+  - [4.2 Retrieving Values Safely](#42-retrieving-values-safely)
+  - [4.3 Conditional Execution](#43-conditional-execution)
+- [5. Transformation and Filtering Methods](#5-transformation-and-filtering-methods)
+  - [5.1 Map Method](#51-map-method)
+  - [5.2 FlatMap Method](#52-flatmap-method)
+  - [5.3 Filter Method](#53-filter-method)
+- [6. Advanced Features](#6-advanced-features)
+  - [6.1 Stream Integration (Java 9+)](#61-stream-integration-java-9)
+  - [6.2 Primitive Optional Types](#62-primitive-optional-types)
+- [7. Best Practices](#7-best-practices)
+  - [7.1 When to Use Optional](#71-when-to-use-optional)
+  - [7.2 When NOT to Use Optional](#72-when-not-to-use-optional)
+  - [7.3 Method Usage Best Practices](#73-method-usage-best-practices)
+    - [Avoid Optional.get()](#avoid-optionalget)
+  - [7.4 Performance Considerations](#74-performance-considerations)
+- [9. Common Pitfalls to Avoid](#9-common-pitfalls-to-avoid)
+  - [9.1 Overusing Optional](#91-overusing-optional)
+  - [9.2 Using Optional in Fields](#92-using-optional-in-fields)
+
 ## 1. Introduction
 
 The `Optional` class was introduced in **Java 8** as a container object designed to solve one of Java's most common runtime errors: the `NullPointerException`. By encapsulating potential null values in a container object, Optional encourages developers to handle null checks more systematically, promoting cleaner and safer code.
