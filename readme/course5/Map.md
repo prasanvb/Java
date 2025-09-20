@@ -43,13 +43,6 @@ graph TD
     A --> D[SortedMap Interface]
     B --> E[LinkedHashMap]
     D --> F[TreeMap]
-    
-    style A fill:#e1f5fe
-    style B fill:#f3e5f5
-    style C fill:#f3e5f5
-    style D fill:#e8f5e8
-    style E fill:#fff3e0
-    style F fill:#fff3e0
 ```
 
 ### Implementation Classes:
@@ -69,6 +62,7 @@ HashMap is the most commonly used Map implementation, providing O(1) average tim
 - **Best performance** for basic operations
 - **Initial capacity**: 16 buckets
 - **Load factor**: 0.75 (resizes when 75% full)
+- **Duplicate Keys**: value get over-written, keys must be unique 
 
 ### When to Use HashMap:
 - When you need fast access to data
@@ -89,13 +83,6 @@ flowchart LR
     C --> D[Bucket Index]
     D --> E[Bucket Array]
     E --> F[LinkedList/TreeNode]
-    
-    style A fill:#e3f2fd
-    style B fill:#f3e5f5
-    style C fill:#e8f5e8
-    style D fill:#fff3e0
-    style E fill:#fce4ec
-    style F fill:#f1f8e9
 ```
 
 ### Step-by-Step Process:
@@ -117,15 +104,6 @@ Hashtable is the synchronized counterpart of HashMap, making it thread-safe but 
 - **Slower performance** due to synchronization overhead
 - **Extends Dictionary class** (legacy)
 
-### Differences from HashMap:
-| Feature         | HashMap                | Hashtable          |
-|-----------------|------------------------|--------------------|
-| Synchronization | Not synchronized       | Synchronized       |
-| Null values     | Allows null key/values | No null allowed    |
-| Performance     | Faster                 | Slower             |
-| Inheritance     | Extends AbstractMap    | Extends Dictionary |
-| Since           | Java 1.2               | Java 1.0           |
-
 ## LinkedHashMap
 
 LinkedHashMap maintains the insertion order of elements using a doubly-linked list.
@@ -142,10 +120,6 @@ LinkedHashMap maintains the insertion order of elements using a doubly-linked li
 graph LR
     A[HashMap Structure] --> B[+ Doubly Linked List]
     B --> C[Maintains Order]
-    
-    style A fill:#e3f2fd
-    style B fill:#f3e5f5
-    style C fill:#e8f5e8
 ```
 
 ### When to Use:
