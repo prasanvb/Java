@@ -1,4 +1,4 @@
-package course5.collectionSort;
+package course5.L2L3L4_collectionSort;
 
 // Person class implementing Comparable with record
 

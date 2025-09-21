@@ -2,7 +2,7 @@ package course5;
 
 import java.util.ArrayList;
 
-public class ArrayList_L1 {
+public class L1_ArrayList {
     public static void main(String[] args) {
         // 1. Creating ArrayList
         ArrayList<String> fruits;

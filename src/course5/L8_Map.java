@@ -2,7 +2,7 @@ package course5;
 
 import java.util.*;
 
-public class Map_L8 {
+public class L8_Map {
     public static void main(String[] args) {
         System.out.println("1. HashMap Example");
         demonstrateHashMap();

@@ -1,4 +1,4 @@
-package course5.Iterable_L7;
+package course5.L7_Iterable;
 
 import java.util.*;
 

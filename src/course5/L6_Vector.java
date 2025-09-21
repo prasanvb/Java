@@ -2,7 +2,7 @@ package course5;
 
 import java.util.Vector;
 
-public class Vector_L6 {
+public class L6_Vector {
     public static void main(String[] args) {
         // 1. Creating Vector
         Vector<String> myList = new Vector<>();

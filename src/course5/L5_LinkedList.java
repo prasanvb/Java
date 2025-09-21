@@ -2,7 +2,7 @@ package course5;
 
 import java.util.LinkedList;
 
-public class LinkedList_L5 {
+public class L5_LinkedList {
     public static void main(String[] args) {
         // 1. Creating LinkedList
         LinkedList<String> myList = new LinkedList<>();

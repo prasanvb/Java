@@ -5,7 +5,7 @@ import java.util.LinkedList;
 import java.util.PriorityQueue;
 import java.util.Queue;
 
-public class Queue_L9 {
+public class L9_Queue {
     public static void main(String[] args) {
         System.out.println("=== LinkedList Queue Example (FIFO) ===");
         linkedListQueueExample();
