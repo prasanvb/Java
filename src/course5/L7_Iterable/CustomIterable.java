@@ -12,14 +12,7 @@ public class CustomIterable {
 }
 
 
-class NumberRange implements Iterable<Integer> {
-    private final int start;
-    private final int end;
-
-    public NumberRange(int start, int end) {
-        this.start = start;
-        this.end = end;
-    }
+record NumberRange(int start, int end) implements Iterable<Integer> {
 
     @Override
     public Iterator<Integer> iterator() {
@@ -33,7 +26,7 @@ class NumberRange implements Iterable<Integer> {
 
             @Override
             public Integer next() {
-                return current++;
+                return (Integer) current++;
             }
         };
     }
