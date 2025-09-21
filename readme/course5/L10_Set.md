@@ -18,16 +18,14 @@
 ### Key Characteristics of Sets
 - **Primary Purpose**: Ensure uniqueness - no duplicate elements allowed
 - **Duplicate Detection**: Uses `equals()` method internally to determine if two objects are identical
-- **Order**: **Does not guarantee insertion order** (except for specific implementations)
+- **Does not guarantee insertion order** (except for specific implementations)
 
 ### Set vs List Comparison
-| Feature | List | Set |
-|---------|------|-----|
-| **Duplicates** | ✅ Allowed | ❌ Not allowed |
-| **Insertion Order** | ✅ Maintained | ❌ Not guaranteed (implementation dependent) |
-| **Index-based Access** | ✅ Available | ❌ Not available |
-
----
+| Feature                | List         | Set                                         |
+|------------------------|--------------|---------------------------------------------|
+| **Duplicates**         | ✅ Allowed    | ❌ Not allowed                               |
+| **Insertion Order**    | ✅ Maintained | ❌ Not guaranteed (implementation dependent) |
+| **Index-based Access** | ✅ Available  | ❌ Not available                             |
 
 ## Set Interface Hierarchy
 
@@ -39,11 +37,6 @@ graph TD
     B --> E[SortedSet Interface]
     E --> F[NavigableSet Interface]
     F --> G[TreeSet]
-    
-    style B fill:#e1f5fe
-    style C fill:#fff3e0
-    style D fill:#fff3e0
-    style G fill:#fff3e0
 ```
 
 ### Main Set Implementations
@@ -56,8 +49,6 @@ graph TD
 - **NavigableSet**: Provides navigation methods for sorted sets
 - **TreeSet**: Implements both SortedSet and NavigableSet
 
----
-
 ## HashSet Implementation
 
 ### HashSet Characteristics
@@ -65,28 +56,23 @@ graph TD
 - No guaranteed order for elements
 - Allows one null element
 - Not synchronized (not thread-safe)
+- Default capacity: 16, load factor: 0.75 (When 75% full, capacity automatically doubles)
 
 ### HashSet Constructors
 
 ```java
-// 1. Default constructor - capacity: 16, load factor: 0.75
-HashSet<String> set1 = new HashSet<>();
-
-// 2. With initial capacity - default load factor: 0.75
-HashSet<String> set2 = new HashSet<>(32);
-
-// 3. With capacity and load factor
-HashSet<String> set3 = new HashSet<>(32, 0.8f);
-
-// 4. From existing collection
-HashSet<String> set4 = new HashSet<>(existingCollection);
+    // 1. Default constructor - capacity: 16, load factor: 0.75
+    HashSet<String> set1 = new HashSet<>();
+    
+    // 2. With initial capacity - default load factor: 0.75
+    HashSet<String> set2 = new HashSet<>(32);
+    
+    // 3. With capacity and load factor
+    HashSet<String> set3 = new HashSet<>(32, 0.8f);
+    
+    // 4. From an existing collection
+    HashSet<String> set4 = new HashSet<>(existingCollection);
 ```
-
-### Load Factor Explained
-- **Definition**: Measure of how full the HashSet can get before capacity increases
-- **Default**: 0.75 (75%)
-- **Behavior**: When 75% full, capacity automatically doubles
-- **Trade-off**: Lower load factor = more memory but faster access
 
 ### Essential HashSet Methods
 - `add(element)` - Add element (returns boolean)
@@ -97,8 +83,6 @@ HashSet<String> set4 = new HashSet<>(existingCollection);
 - `clear()` - Remove all elements
 - `iterator()` - Get iterator for traversal
 - `clone()` - Create shallow copy
-
----
 
 ## Working with Custom Objects
 
@@ -118,8 +102,6 @@ Person p2 = new Person("John", 25);
 ### Why Override equals() is Necessary
 If we override equals(), we must also override hashCode() due to the general contract, and failure to do so can lead to inconsistent behavior in hash-based collections.
 
----
-
 ## The equals() and hashCode() Contract
 
 ### The Contract Rules
@@ -138,26 +120,22 @@ The equals-hashCode contract states that if you override equals() method, you mu
 2. **Use Same Attributes**: Use the same attributes in both `equals()` and `hashCode()`
 3. **Consider Null Values**: Handle null values properly
 
----
-
 ## LinkedHashSet - Maintaining Insertion Order
 
 ### LinkedHashSet Characteristics
-- Extends HashSet but adds a doubly-linked list to maintain insertion order, using more memory than HashSet
+- Extends HashSet but adds a doubly linked list to maintain insertion order, using more memory than HashSet
 - Same performance as HashSet for basic operations
 - Iteration order is predictable (insertion order)
 
 ### When to Use LinkedHashSet
 - When you need Set functionality (no duplicates)
 - When insertion order matters for iteration
-- When you don't need sorting but want predictable order
-
----
+- When you don't need sorting but want a predictable order
 
 ## TreeSet - Sorted Collection
 
 ### TreeSet Characteristics
-- Uses Red-Black Tree to store elements, automatically sorting them in ascending order
+- Automatically sorting them in ascending order
 - **Only sorted collection** in Java Collections Framework (along with TreeMap)
 - O(log n) performance for basic operations
 - Cannot contain null elements
@@ -178,335 +156,27 @@ public class Person implements Comparable<Person> {
 }
 ```
 
----
+## Comparison of HashSet, LinkedHashSet, and TreeSet
 
-## Performance Comparison
+| Operation       | HashSet      | LinkedHashSet      | TreeSet               |
+|-----------------|--------------|--------------------|-----------------------|
+| **Add**         | O(1) avg     | O(1) avg           | O(log n)              |
+| **Remove**      | O(1) avg     | O(1) avg           | O(log n)              |
+| **Contains**    | O(1) avg     | O(1) avg           | O(log n)              |
+| **Iteration**   | O(n)         | O(n)               | O(n)                  |
+| **Memory**      | Least        | More (linked list) | Most (tree structure) |
+| **Order**       | No guarantee | Insertion order    | Sorted order          |
+| **Performance** | Fastest      | Slightly slower    | Fastest               |
 
-| Operation | HashSet | LinkedHashSet | TreeSet |
-|-----------|---------|---------------|---------|
-| **Add** | O(1) avg | O(1) avg | O(log n) |
-| **Remove** | O(1) avg | O(1) avg | O(log n) |
-| **Contains** | O(1) avg | O(1) avg | O(log n) |
-| **Iteration** | O(n) | O(n) | O(n) |
-| **Memory** | Least | More (linked list) | Most (tree structure) |
-| **Order** | No guarantee | Insertion order | Sorted order |
+:point_right: In general, HashSet should have slightly better performance for basic operations like 
+add, 
+remove, and contains, while LinkedHashSet trades some of that performance for predictable iteration order.
+For most practical applications, the performance difference between HashSet and LinkedHashSet is negligible unless you're dealing with extremely large sets or performance-critical operations.
 
----
 
-## Complete Working Examples
-
-### Example 1: Basic HashSet Operations
-
-```java
-import java.util.*;
-
-public class HashSetExample {
-    public static void main(String[] args) {
-        // Create HashSet
-        HashSet<String> fruits = new HashSet<>();
-        
-        // Add elements
-        fruits.add("Apple");
-        fruits.add("Orange");
-        fruits.add("Grape");
-        fruits.add("Apple");    // Duplicate - will be ignored
-        fruits.add("Orange");   // Duplicate - will be ignored
-        
-        System.out.println("HashSet contents:");
-        for (String fruit : fruits) {
-            System.out.println(fruit);
-        }
-        
-        // Check size
-        System.out.println("Size: " + fruits.size()); // Output: 3
-        
-        // Check if contains element
-        System.out.println("Contains 'Apple': " + fruits.contains("Apple")); // true
-        
-        // Remove element
-        fruits.remove("Grape");
-        System.out.println("After removing 'Grape': " + fruits);
-    }
-}
-```
-
-**Expected Output:**
-```
-HashSet contents:
-Apple
-Orange
-Grape
-Size: 3
-Contains 'Apple': true
-After removing 'Grape': [Apple, Orange]
-```
-
-### Example 2: Custom Objects with equals() and hashCode()
-
-```java
-import java.util.*;
-
-class Person {
-    private String name;
-    private int age;
-    private String gender;
-    
-    // Constructor
-    public Person(String name, int age, String gender) {
-        this.name = name;
-        this.age = age;
-        this.gender = gender;
-    }
-    
-    // Getter methods
-    public String getName() { return name; }
-    public int getAge() { return age; }
-    public String getGender() { return gender; }
-    
-    // Override equals() - using name for equality
-    @Override
-    public boolean equals(Object obj) {
-        if (this == obj) return true;
-        if (obj == null || getClass() != obj.getClass()) return false;
-        
-        Person person = (Person) obj;
-        return Objects.equals(name, person.name);
-    }
-    
-    // Override hashCode() - using same attribute as equals()
-    @Override
-    public int hashCode() {
-        return Objects.hash(name);
-    }
-    
-    @Override
-    public String toString() {
-        return "Person{name='" + name + "', age=" + age + ", gender='" + gender + "'}";
-    }
-}
-
-public class CustomObjectExample {
-    public static void main(String[] args) {
-        Set<Person> personSet = new HashSet<>();
-        
-        // Add persons
-        personSet.add(new Person("Zia", 22, "Female"));
-        personSet.add(new Person("Zia", 22, "Female")); // Duplicate name
-        personSet.add(new Person("Alex", 24, "Male"));
-        personSet.add(new Person("Zia", 30, "Female")); // Same name, different age
-        
-        System.out.println("Person Set (duplicates by name removed):");
-        for (Person p : personSet) {
-            System.out.println(p);
-        }
-        
-        System.out.println("Set size: " + personSet.size()); // Output: 2
-    }
-}
-```
-
-**Expected Output:**
-```
-Person Set (duplicates by name removed):
-Person{name='Alex', age=24, gender='Male'}
-Person{name='Zia', age=22, gender='Female'}
-Set size: 2
-```
-
-### Example 3: Comparing All Three Set Implementations
-
-```java
-import java.util.*;
-
-public class SetComparison {
-    public static void main(String[] args) {
-        // Sample data
-        String[] fruits = {"Grape", "Apple", "Orange", "Banana", "Apple", "Grape"};
-        
-        // HashSet - No order guarantee
-        Set<String> hashSet = new HashSet<>();
-        Collections.addAll(hashSet, fruits);
-        System.out.println("HashSet (no order): " + hashSet);
-        
-        // LinkedHashSet - Maintains insertion order
-        Set<String> linkedHashSet = new LinkedHashSet<>();
-        Collections.addAll(linkedHashSet, fruits);
-        System.out.println("LinkedHashSet (insertion order): " + linkedHashSet);
-        
-        // TreeSet - Sorted order
-        Set<String> treeSet = new TreeSet<>();
-        Collections.addAll(treeSet, fruits);
-        System.out.println("TreeSet (sorted): " + treeSet);
-        
-        // Performance demonstration
-        demonstratePerformance();
-    }
-    
-    private static void demonstratePerformance() {
-        System.out.println("\nPerformance Test (1 million operations):");
-        int size = 1000000;
-        
-        // HashSet performance
-        long start = System.currentTimeMillis();
-        Set<Integer> hashSet = new HashSet<>();
-        for (int i = 0; i < size; i++) {
-            hashSet.add(i);
-        }
-        long hashSetTime = System.currentTimeMillis() - start;
-        
-        // LinkedHashSet performance
-        start = System.currentTimeMillis();
-        Set<Integer> linkedHashSet = new LinkedHashSet<>();
-        for (int i = 0; i < size; i++) {
-            linkedHashSet.add(i);
-        }
-        long linkedHashSetTime = System.currentTimeMillis() - start;
-        
-        // TreeSet performance
-        start = System.currentTimeMillis();
-        Set<Integer> treeSet = new TreeSet<>();
-        for (int i = 0; i < size; i++) {
-            treeSet.add(i);
-        }
-        long treeSetTime = System.currentTimeMillis() - start;
-        
-        System.out.println("HashSet time: " + hashSetTime + " ms");
-        System.out.println("LinkedHashSet time: " + linkedHashSetTime + " ms");
-        System.out.println("TreeSet time: " + treeSetTime + " ms");
-    }
-}
-```
-
-**Expected Output:**
-```
-HashSet (no order): [Apple, Grape, Orange, Banana]
-LinkedHashSet (insertion order): [Grape, Apple, Orange, Banana]
-TreeSet (sorted): [Apple, Banana, Grape, Orange]
-
-Performance Test (1 million operations):
-HashSet time: 145 ms
-LinkedHashSet time: 167 ms
-TreeSet time: 578 ms
-```
-
-### Example 4: TreeSet with Custom Objects
-
-```java
-import java.util.*;
-
-class PersonComparable implements Comparable<PersonComparable> {
-    private String name;
-    private int age;
-    private String gender;
-    
-    public PersonComparable(String name, int age, String gender) {
-        this.name = name;
-        this.age = age;
-        this.gender = gender;
-    }
-    
-    public String getName() { return name; }
-    public int getAge() { return age; }
-    public String getGender() { return gender; }
-    
-    // Required for TreeSet - defines natural ordering
-    @Override
-    public int compareTo(PersonComparable other) {
-        return this.name.compareTo(other.name); // Sort by name
-    }
-    
-    // Still need equals() and hashCode() for Set contract
-    @Override
-    public boolean equals(Object obj) {
-        if (this == obj) return true;
-        if (obj == null || getClass() != obj.getClass()) return false;
-        PersonComparable person = (PersonComparable) obj;
-        return Objects.equals(name, person.name);
-    }
-    
-    @Override
-    public int hashCode() {
-        return Objects.hash(name);
-    }
-    
-    @Override
-    public String toString() {
-        return "Person{name='" + name + "', age=" + age + ", gender='" + gender + "'}";
-    }
-}
-
-public class TreeSetCustomExample {
-    public static void main(String[] args) {
-        TreeSet<PersonComparable> personSet = new TreeSet<>();
-        
-        // Add persons in random order
-        personSet.add(new PersonComparable("Zia", 22, "Female"));
-        personSet.add(new PersonComparable("Rome", 23, "Male"));
-        personSet.add(new PersonComparable("Alex", 24, "Male"));
-        personSet.add(new PersonComparable("Lucy", 21, "Female"));
-        personSet.add(new PersonComparable("Bob", 25, "Male"));
-        
-        System.out.println("TreeSet (automatically sorted by name):");
-        for (PersonComparable p : personSet) {
-            System.out.println(p);
-        }
-        
-        // Navigation methods available in TreeSet
-        System.out.println("\nNavigation Methods:");
-        System.out.println("First: " + personSet.first());
-        System.out.println("Last: " + personSet.last());
-        System.out.println("Higher than 'Lucy': " + personSet.higher(new PersonComparable("Lucy", 0, "")));
-        System.out.println("Lower than 'Lucy': " + personSet.lower(new PersonComparable("Lucy", 0, "")));
-    }
-}
-```
-
-**Expected Output:**
-```
-TreeSet (automatically sorted by name):
-Person{name='Alex', age=24, gender='Male'}
-Person{name='Bob', age=25, gender='Male'}
-Person{name='Lucy', age=21, gender='Female'}
-Person{name='Rome', age=23, gender='Male'}
-Person{name='Zia', age=22, gender='Female'}
-
-Navigation Methods:
-First: Person{name='Alex', age=24, gender='Male'}
-Last: Person{name='Zia', age=22, gender='Female'}
-Higher than 'Lucy': Person{name='Rome', age=23, gender='Male'}
-Lower than 'Lucy': Person{name='Bob', age=25, gender='Male'}
-```
-
----
-
-## Key Takeaways and Best Practices
-
-### When to Use Each Implementation
-1. **HashSet**: 
-   - Default choice for general-purpose Set operations
-   - Best performance when order doesn't matter
-   - Use when you need fastest add/remove/contains operations
-
-2. **LinkedHashSet**: 
-   - When you need Set functionality with predictable iteration order
-   - Slight performance overhead compared to HashSet
-   - Good compromise between HashSet and TreeSet
-
-3. **TreeSet**: 
-   - When you need sorted data
-   - When you need navigation capabilities (first, last, higher, lower)
-   - Accept O(log n) performance for sorting benefits
-
-### Critical Rules to Remember
+## Critical Rules to Remember
 1. **Always override both `equals()` and `hashCode()`** when working with custom objects in Sets
 2. **Use the same attributes** in both methods to maintain the contract
 3. **For TreeSet**, implement `Comparable<T>` or provide a `Comparator<T>`
 4. **TreeSet cannot contain null elements**, while HashSet and LinkedHashSet can contain one null
 5. **Consider using unique identifiers** (like ID fields) for equality rather than descriptive fields like names
-
-### Common Pitfalls to Avoid
-- Overriding `equals()` without overriding `hashCode()`
-- Using mutable objects as Set elements and then modifying them
-- Forgetting to implement `Comparable` when using TreeSet with custom objects
-- Relying on HashSet iteration order (it's not guaranteed)
-- Using TreeSet when you don't need sorting (performance impact)
