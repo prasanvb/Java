@@ -1,4 +1,4 @@
-# Java Set Collection - Complete Study Notes
+# Set
 
 ## Table of Contents
 1. [Introduction to Sets](#introduction-to-sets)

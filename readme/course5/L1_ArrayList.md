@@ -1,5 +1,13 @@
 # ArrayList
 
+**Table of Contents**
+
+- [Overview](#overview)
+- [Properties](#properties)
+- [L1: Basic ArrayList Operations](#l1-basic-arraylist-operations)
+    - [Generic Type Safety](#generic-type-safety)
+    - [ArrayList Constructors](#arraylist-constructors)
+
 **ArrayList** is similar to arrays but with dynamic sizing capabilities:
 
 **Differences from Arrays:**

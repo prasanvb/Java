@@ -1,5 +1,26 @@
 # Java Iterable Interface and Spliterator
 
+**Table of Contents**
+
+- [The Iterable Interface](#the-iterable-interface)
+    - [Basic Definition](#basic-definition)
+    - [Key Features](#key-features)
+    - [Examples](#examples)
+    - [Common Implementations](#common-implementations)
+    - [Relationship with Iterator](#relationship-with-iterator)
+- [The Spliterator Method](#the-spliterator-method)
+    - [What is Spliterator?](#what-is-spliterator)
+    - [Default implementation](#default-implementation-in-the-iterable-interface)
+    - [Example](#example)
+    - [Spliterator Characteristics](#spliterator-characteristics)
+- [Key Differences and Integration](#key-differences-and-integration)
+    - [Iterator vs Spliterator](#iterator-vs-spliterator)
+    - [When to Use What](#when-to-use-what)
+- [Benefits and Best Practices](#benefits-and-best-practices)
+    - [Benefits of Iterable + Spliterator](#benefits-of-iterable--spliterator)
+    - [Best Practices](#best-practices)
+    - [When to Use](#when-to-use)
+
 ## The Iterable Interface
 
 The Java `Iterable` interface is a fundamental part of Java's collection framework that enables objects to be iterated over using enhanced for-each loops and other iteration mechanisms.

@@ -1,7 +1,21 @@
-# Java Queue Interface - Complete Study Notes
+# Queue
 
-## 1. Overview
+**Table of Contents**
 
+- [Overview](#overview)
+- [Queue Hierarchy](#queue-hierarchy)
+- [Core Queue Operations](#core-queue-operations)
+    - [Terminology](#terminology)
+    - [Queue Operation Flow](#queue-operation-flow)
+- [Queue Method Categories](#queue-method-categories)
+    - [Method Differences](#method-differences)
+- [Implementation Approaches](#implementation-approaches)
+    - [LinkedList Queue Implementation](#linkedlist-queue-implementation-fifo-order)
+    - [PriorityQueue Implementation](#priorityqueue-implementation-natural-ordering)
+    - [LinkedListQueue vs PriorityQueue Characteristics](#linkedlistqueue-vs-priorityqueue-characteristics)
+- [Real-World Applications](#real-world-applications)
+
+## Overview
 The Queue interface is a fundamental part of Java's Collections Framework, extending the Collection interface. 
 It follows the FIFO (First In, First Out) rule—the first element added to the queue is the first to be removed.
 
@@ -12,7 +26,7 @@ It follows the FIFO (First In, First Out) rule—the first element added to the 
 - **Dynamic Size**: Automatically resizes based on the number of elements
 - **Use generics** to ensure type safety
 
-## Queue Hierarchy
+### Queue Hierarchy
 
 ```mermaid
 graph TD

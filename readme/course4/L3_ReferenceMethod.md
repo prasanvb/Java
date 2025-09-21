@@ -1,5 +1,29 @@
 # Java Method References
 
+
+# Java Method References
+
+## Table of Contents
+- [Definition](#definition)
+- [Types of Method References](#types-of-method-references)
+    - [1. Static Method References](#1-static-method-references)
+    - [2. Instance Method References on Specific Objects](#2-instance-method-references-on-specific-objects)
+    - [3. Instance Method References on Arbitrary Objects](#3-instance-method-references-on-arbitrary-objects)
+    - [4. Constructor References](#4-constructor-references)
+- [Key Benefits](#key-benefits)
+- [When to Use Method References](#when-to-use-method-references)
+- [Functional Interface Compatibility](#functional-interface-compatibility)
+- [Common Use Cases](#common-use-cases)
+- [Best Practices](#best-practices)
+
+## Definition
+Method references are a shorthand notation for lambda expressions that call a specific method. Introduced in Java 8 as part of functional programming features.
+
+## Syntax
+```java
+ClassName::methodName
+```
+
 ## Definition
 Method references are a shorthand notation for lambda expressions that call a specific method. Introduced in Java 8 as part of functional programming features.
 
@@ -33,20 +57,16 @@ Uses the `::` operator to reference methods without invoking them.
 
 ## Key Benefits
 
-### Readability
-- More concise than lambda expressions
-- Eliminates redundant code
-- Cleaner syntax for method calls
-
-### Performance
-- Potentially more efficient than lambdas
-- No additional lambda instance creation
-- Direct method invocation
-
-### Reusability
-- Easy reference to existing methods
-- Promotes code reuse
-- Reduces duplication
+- Readability 
+  - Eliminates redundant code. 
+  - Cleaner syntax for method calls.
+- Performance
+  - Potentially more efficient than lambdas. 
+  - No additional lambda instance creation. 
+  - Direct method invocation.
+- Reusability
+  - Easy reference to existing methods
+  - Reduces duplication
 
 ## When to Use Method References
 

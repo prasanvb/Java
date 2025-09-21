@@ -1,4 +1,4 @@
-# Java Map Collection
+# Map
 
 ## Table of Contents
 1. [Map Interface Overview](#map-interface-overview)

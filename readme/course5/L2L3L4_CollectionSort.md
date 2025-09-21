@@ -1,5 +1,14 @@
 # Sorting Collections
 
+**Table of Contents**
+
+- [Parallel Streams](#parallel-streams)
+- [L2: Sorting Primitive Types](#l2-sorting-primitive-types)
+- [L3: Sorting Custom Objects](#l3-sorting-custom-objects)
+- [L4: Advanced Sorting with Comparator](#l4-advanced-sorting-with-comparator)
+- [Collection vs Collections vs Collection](#collection-vs-collections-vs-collection)
+- [Key Takeaways](#key-takeaways)
+
 ## Parallel Streams
 
 `parallelStream()` method provides a way to process elements of a stream in parallel, 
@@ -11,22 +20,19 @@ From a Collection: Call the parallelStream() method directly on a Collection (e.
     Stream<Integer> parallelStream = myList.parallelStream();
 ```
 
-
-
 ## L2: Sorting Primitive Types
 
 The `Collections.sort()` method can sort collections of objects such as String, Numbers that have natural ordering
 
 ## L3: Sorting Custom Objects
 
-For custom objects, you must implement the `Comparable` interface:
-
+For custom objects, you must implement the `Comparable` interface.
 
 ## L4: Advanced Sorting with Comparator
 
-For more complex sorting scenarios, you can use `Comparator`:
+For more complex sorting scenarios, you can use `Comparator`.
 
-### Collection vs Collections vs Collection
+## Collection vs Collections vs Collection
 
 **Be careful not to confuse:**
 
@@ -43,7 +49,7 @@ For more complex sorting scenarios, you can use `Comparator`:
     Collections.reverse(myList);       // Static method
     ```
 
-### Key Takeaways
+## Key Takeaways
 
 1. **Choose the right collection type** based on your use case:
     - List: For ordered, indexed access
