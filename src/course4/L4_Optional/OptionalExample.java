@@ -58,7 +58,7 @@ public class OptionalExample {
 }
 
 // Supporting classes
-record User (int id, String name, boolean active){
+record User(int id, String name, boolean active) {
 }
 
 class UserNotFoundException extends RuntimeException {

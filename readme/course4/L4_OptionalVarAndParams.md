@@ -2,18 +2,17 @@
 
 ## Overview
 
-In Java, there's no built-in concept of "optional" parameters like in Python or JavaScript. However, we can achieve optional behavior using several patterns and techniques.
+In Java, there's no built-in concept of "optional" parameters like in Python or JavaScript. 
+However, we can achieve optional behavior using several patterns and techniques.
 
----
 
 ## 1. Optional Class Variables using `Optional<T>`
 
-### Concept
-
 Use Java's `Optional<T>` wrapper class to explicitly indicate that a field may or may not have a value.
 
-### When to Use
-
+- `Optional<T>` is a container for a single value of type `T`
+- `Optional<T>` is a value type, so it's immutable
+- `Optional<T>` is a functional interface, so it can be used as a parameter or return type
 - Fields that may legitimately be absent
 - API design where you want to be explicit about nullable fields
 - When you want to avoid null pointer exceptions
@@ -59,15 +58,10 @@ if (user2.getEmail().isPresent()) {
 }
 ```
 
----
 
 ## 2. Default Values for Optional Fields
 
-### Concept
-
 Assign default values to fields and allow them to be overridden. Use `null` for truly optional fields.
-
-### When to Use
 
 - Configuration classes
 - Settings or preferences
@@ -108,15 +102,9 @@ System.out.println(config.getConnectionString());
 // jdbc:postgresql://prod-server.com:5432/myapp
 ```
 
----
-
 ## 3. Method Overloading for Optional Parameters
 
-### Concept
-
 Create multiple versions of the same method with different parameter counts. Each version calls the "master" method with default values for missing parameters.
-
-### When to Use
 
 - Small number of optional parameters (2-3)
 - When you want clean, readable method calls
@@ -162,15 +150,9 @@ service.sendEmail("user@example.com", "Important", "Read this", "boss@example.co
 // Priority: NORMAL
 ```
 
----
-
 ## 4. Builder Pattern for Multiple Optional Parameters
 
-### Concept
-
 Use a separate builder class that allows method chaining to set optional parameters. Best for objects with many optional fields.
-
-### When to Use
 
 - Classes with many optional parameters (4+)
 - Complex object construction
@@ -229,11 +211,7 @@ new EmailBuilder()
 
 ## 5. Optional Method Parameters
 
-### Concept
-
 Use `Optional<T>` as method parameters to explicitly indicate optional values.
-
-### When to Use
 
 - When you want to be explicit about optional parameters
 - Functional programming style
@@ -274,11 +252,7 @@ processor.processData("data", Optional.of("important"), Optional.of(50));
 
 ## 6. Varargs for Optional Parameters
 
-### Concept
-
 Use variable arguments (`Object... args`) to accept any number of optional parameters.
-
-### When to Use
 
 - When you have an unknown number of optional parameters
 - Logging, debugging, or utility methods
@@ -316,7 +290,6 @@ logger.log("ERROR", "Connection failed", "Host: localhost", "Port: 5432", "Retri
 //   - Retries: 3
 ```
 
----
 
 ## Quick Comparison Table
 
@@ -328,20 +301,6 @@ logger.log("ERROR", "Connection failed", "Host: localhost", "Port: 5432", "Retri
 | Builder pattern          | Many optional parameters | Fluent API, very readable       | More code, separate class          |
 | `Optional<T>` parameters | Explicit optional params | Type-safe, explicit             | Verbose method calls               |
 | Varargs                  | Variable optional params | Flexible, simple                | Type safety lost, generic handling |
-
----
-
-## Best Practices
-
-1. **Choose the right pattern** based on your use case complexity
-2. **Don't overuse `Optional`** - it has overhead and can make code verbose
-3. **Prefer method overloading** for simple cases with few parameters
-4. **Use builder pattern** for complex objects with many optional fields
-5. **Provide sensible defaults** when possible
-6. **Be consistent** in your codebase - don't mix patterns unnecessarily
-7. **Document optional behavior** clearly in your APIs
-
----
 
 ## Key Takeaways
 
