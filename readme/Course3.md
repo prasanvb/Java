@@ -1,5 +1,41 @@
 # OOPS - Inheritance, Polymorphism, Interface, Abstract Class, Encapsulation, Records
 
+**Table of Contents**
+
+- [Lesson 1: Inheritance](#lesson-1-inheritance)
+    - [What is Inheritance?](#what-is-inheritance)
+    - [final and inheritance](#final-and-inheritance)
+- [Lesson 2: Polymorphism](#lesson-2-polymorphism)
+    - [What is Polymorphism?](#what-is-polymorphism)
+    - [Types of Polymorphism in Java](#types-of-polymorphism-in-java)
+    - [Key Differences Between Overriding & Overloading](#key-differences-between-overriding--overloading)
+    - [Why Polymorphism is Useful](#why-polymorphism-is-useful)
+- [Lesson 3: Interfaces](#lesson-3-interfaces)
+    - [What is an Interface?](#what-is-an-interface)
+    - [Characteristics of Interfaces](#characteristics-of-interfaces)
+- [Lesson 4: Abstract class](#lesson-4-abstract-class)
+    - [What is an Abstract Class?](#what-is-an-abstract-class)
+    - [Key Properties of Abstract Classes](#key-properties-of-abstract-classes)
+    - [Difference Between Class, Interface, and Abstract Class](#difference-between-class-interface-and-abstract-class)
+    - [Interface vs Abstract](#interface-vs-abstract)
+- [Lesson 5: Encapsulation](#lesson-5-encapsulation)
+    - [What is Encapsulation?](#what-is-encapsulation)
+    - [Why Encapsulation?](#why-encapsulation)
+    - [Key Takeaways](#key-takeaways)
+- [Lesson 6: Records](#lesson-6-records)
+    - [POJOs](#pojos)
+    - [DTOs](#dtos)
+    - [Records](#records)
+    - [Key Properties of Records](#key-properties-of-records)
+    - [Limitations of Records](#limitations-of-records)
+    - [When to Use Records](#when-to-use-records)
+    - [Comparison](#comparison)
+- [Lesson 7: Sealed Classes](#lesson-7-sealed-classes)
+    - [What Are Sealed Classes?](#what-are-sealed-classes)
+    - [Syntax Overview](#syntax-overview)
+    - [Uses of Sealed Classes](#uses-of-sealed-classes)
+    - [Key Points](#key-points)
+
 ## Lesson 1: Inheritance
 
                 ┌──────────────┐
@@ -129,7 +165,7 @@ In Java, polymorphism means a single interface (method signature) can represent 
 ### Key Differences Between Overriding & Overloading
 
 | Feature                   | Overriding (Runtime) | Overloading (Compile-time)          |
-| ------------------------- | -------------------- | ----------------------------------- |
+|---------------------------|----------------------|-------------------------------------|
 | **Polymorphism Type**     | Runtime              | Compile-time                        |
 | **Method Signature**      | Must be same         | Must be different                   |
 | **Return Type**           | Same or subtype      | Can be different (if params differ) |
@@ -195,20 +231,20 @@ In Java, polymorphism means a single interface (method signature) can represent 
 
 ## Difference Between Class, Interface, and Abstract Class
 
-| Feature                      | Normal Class | Interface                                 | Abstract Class |
-| ---------------------------- | ------------ | ----------------------------------------- | -------------- |
-| Can have variables           | ✅           | ❌ (only constants unless `static final`) | ✅             |
-| Can have implemented methods | ✅           | ✅ (since Java 8 with `default`)          | ✅             |
-| Can have abstract methods    | ❌           | ✅                                        | ✅             |
-| Object creation allowed      | ✅           | ❌                                        | ❌             |
+| Feature                      | Normal Class | Interface                                | Abstract Class |
+|------------------------------|--------------|------------------------------------------|----------------|
+| Can have variables           | ✅            | ❌ (only constants unless `static final`) | ✅              |
+| Can have implemented methods | ✅            | ✅ (since Java 8 with `default`)          | ✅              |
+| Can have abstract methods    | ❌            | ✅                                        | ✅              |
+| Object creation allowed      | ✅            | ❌                                        | ❌              |
 
 ## Interface vs Abstract
 
 | Feature              | **Interface**                                                                                                                                                                       | **Abstract Class**                                                                                                                                  |
-| -------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------- |
+|----------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------|
 | **Method Types**     | - Abstract methods (always `public abstract` by default)<br>- `default` methods (Java 8+)<br>- `static` methods (Java 8+)<br>- `private` methods (Java 9+ for internal helper code) | - Abstract methods<br>- Concrete methods (normal methods with body)<br>- Can also define `static` and `final` methods                               |
 | **Variables**        | - All variables are `public static final` (constants).<br>- Must be initialized at declaration.                                                                                     | - Can have instance variables (with different access modifiers: `private`, `protected`, etc.).<br>- Can have mutable state (not necessarily final). |
-| **Constructors**     | ❌ Interfaces cannot have constructors.                                                                                                                                             | ✅ Abstract classes can have constructors (called when subclass objects are created).                                                               |
+| **Constructors**     | ❌ Interfaces cannot have constructors.                                                                                                                                              | ✅ Abstract classes can have constructors (called when subclass objects are created).                                                                |
 | **Inheritance**      | - A class can **implement multiple interfaces**.<br>- An interface can **extend multiple interfaces**.                                                                              | - A class can **extend only one abstract class** (single inheritance).                                                                              |
 | **Access Modifiers** | - Methods are implicitly `public`.<br>- Cannot use `protected` or `private` (except for Java 9+ private helper methods).                                                            | - Methods and variables can have any access modifier (`public`, `protected`, `private`).                                                            |
 | **When to Use**      | - To define a **contract/ability** for unrelated classes (e.g., `Comparable`, `Serializable`).<br>- When you want **multiple inheritance of type**.                                 | - To share **common state + behavior** among related classes.<br>- When you want **code reuse** with partial implementation.                        |
@@ -334,13 +370,13 @@ A record is a transparent, immutable data carrier class in Java that automatical
 ### Comparison
 
 | Feature     | POJO                           | DTO                                            | Record                             |
-| ----------- | ------------------------------ | ---------------------------------------------- | ---------------------------------- |
+|-------------|--------------------------------|------------------------------------------------|------------------------------------|
 | Definition  | Any simple Java object         | A POJO used specifically for transferring data | Java 16+ feature to simplify DTOs  |
 | Fields      | mutable or immutable           | usually immutable                              | always immutable (`final`)         |
 | Logic       | may contain business logic     | should contain **no business logic**           | minimal logic (validation allowed) |
 | Boilerplate | requires getters/setters, etc. | requires getters                               | auto-generated                     |
 
-## Sealed Classes
+## Lesson 7: Sealed Classes
 
 ### What Are Sealed Classes?
 

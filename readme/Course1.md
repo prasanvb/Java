@@ -1,10 +1,47 @@
 # Java Basics
 
+**Table of Contents**
+
+- [Class & Objects](#class--objects)
+    - [Constructors](#constructors)
+- [Package, imports and Access Modifiers](#package-imports-and-access-modifiers)
+    - [Java Access Levels](#java-has-four-access-levels)
+- [Java Variables](#java-variables)
+    - [Two Categories of Variables](#two-categories-of-variables)
+    - [Primitive Sizes and Ranges](#primitive-sizes-and-ranges)
+    - [Variable Types by Scope](#variable-types-by-scope)
+    - [Default Values for Variables](#default-values-for-variables)
+    - [Naming Rules](#naming-rules)
+    - [Default Values](#default-values)
+- [Variable Assignment (Literals)](#variable-assignment-literals)
+    - [Boolean Literals](#boolean-literals)
+    - [Char Literals](#char-literals)
+    - [String Literals](#string-literals)
+    - [Integer Literals](#integer-literals)
+    - [Long Literals](#long-literals)
+    - [Float Literals](#float-literals)
+    - [Double Literals](#double-literals)
+- [Type Casting](#lesson-6-type-casting)
+- [Scope of Variables](#lesson-7-scope-of-variables)
+    - [1. Class (Static) Variables](#1-class-static-variables--longest-lifetime)
+    - [2. Instance Variables](#2-instance-variables)
+    - [3. Local Variables](#3-local-variables)
+    - [4. Block Variables](#4-block-variables--shortest-lifetime)
+- [Modifiers for Variables](#modifiers-for-variables)
+  - [Additional Modifiers](#additional-modifiers-instance-or-static)
+  - [Local Variables Modifiers](#local-variables-inside-methods)
+- [Lesson 9: Wrapper Class](#lesson-9-wrapper-class)
+    - [Key points](#key-points)
+- [Lesson 10: Array](#lesson-10-array)
+    - [Key Points](#key-points-1)
+- [Heap and Stack](#heap-and-stack)
+    - [Rules](#rules)
+
 ## Class & Objects
 
 - Only one public class per` .java` file, and filename must match public class name.
 - The public class of your source file must have the main method. Only one main method is needed per application.
-- Class name starts with an uppercase letter - is convention not a rule.
+- Class name starts with an uppercase letter-it is a convention not a rule.
 
 ### Constructors
 A constructor in Java is a special method that:
@@ -181,9 +218,9 @@ In Java, the **scope** of a variable defines *where* in the code it can be acces
 - **Scope**: not visible outside the block.
 - Inner variables can shadow outer ones with the same name.
 
-### Modifiers for Variables
+## Modifiers for Variables
 
-### Additional  Modifiers (instance or static)
+### Additional Modifiers (instance or static)
 - final: must be assigned once, cannot be changed later (similar to constants in JS)
 - static: shared across all instances of a class
 - transient: excluded from serialization

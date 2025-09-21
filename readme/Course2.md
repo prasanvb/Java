@@ -1,5 +1,30 @@
 # Java Objects, Constructors, Static
 
+**Table of Contents**
+
+- [Lesson 1: Method Structure & Parameters](#lesson-1-method-structure--parameters)
+    - [Key Points](#key-points)
+    - [Types of Modifiers](#types-of-modifiers)
+        - [Access Modifiers](#access-modifiers)
+        - [Non-Access Modifiers](#non-access-modifiers)
+- [Lesson 2: Instanceof (Java 16)](#lesson-2-instanceof-java-16)
+    - [Pattern Matching for instanceof](#pattern-matching-for-instanceof)
+- [Lesson 3: Enhanced Switch Expressions (Java 17)](#lesson-3-enhanced-switch-expressions-java-17)
+- [Lesson 4: Constructors in-depth](#lesson-4-constructors-in-depth)
+    - [Access Modifiers for Constructors](#access-modifiers-for-constructors)
+- [Lesson 5: Use Cases for `private` Constructors](#lesson-5-use-cases-for-private-constructors)
+    - [Singleton Design Pattern](#singleton-design-pattern)
+    - [Utility or Helper Classes](#utility-or-helper-classes)
+    - [Immutable Classes with Factory Methods](#immutable-classes-with-factory-methods)
+    - [Restricting Inheritance](#restricting-inheritance)
+- [Lesson 6: Static](#lesson-6-static)
+    - [What is static in Java?](#what-is-static-in-java)
+    - [Static Variables](#static-variables)
+    - [Static Methods](#static-methods)
+    - [Why is main() static?](#why-is-main-static)
+    - [Static Blocks](#static-blocks)
+    - [Static Nested Classes](#static-nested-classes)
+
 ## Lesson 1: Method Structure & Parameters
 
 - A method in Java is a block of code designed to perform a specific task.
